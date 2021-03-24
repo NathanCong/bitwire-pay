@@ -1,7 +1,7 @@
 # bitwire-pay
 支付 Demo
 
-## 安装依赖
+### 安装依赖
 ```
 yarn install
 ```

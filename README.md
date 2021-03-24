@@ -2,25 +2,25 @@
 
 支付 Demo
 
-## Project setup
+## 安装依赖
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 启动开发
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### 构建生产
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### 代码检查
 ```
 yarn lint
 ```
 
-### Customize configuration
+### 自定义配置
 See [Configuration Reference](https://cli.vuejs.org/config/).

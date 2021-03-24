@@ -45,7 +45,6 @@ export default {
 }
 
 .layout-left {
-  background-color: red;
   background-image: url('~@/assets/layout_left_bg.png');
   background-repeat: no-repeat;
   background-size: cover;

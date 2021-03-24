@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue';
+import Layout from '@/components/common/Layout.vue';
 
 export default {
   name: 'Login',

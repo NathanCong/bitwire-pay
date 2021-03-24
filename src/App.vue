@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="fonts background">
-    <!-- <router-view /> -->
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,13 @@
   background-color: #ccc;
   background-image: url('~@/assets/bg.png');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 212px;
 }
 </style>

@@ -1,5 +1,4 @@
 # bitwire-pay
-
 支付 Demo
 
 ## 安装依赖
@@ -23,4 +22,4 @@ yarn lint
 ```
 
 ### 自定义配置
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[Configuration Reference](https://cli.vuejs.org/config/).

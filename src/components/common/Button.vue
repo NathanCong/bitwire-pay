@@ -1,5 +1,5 @@
 <template>
-  <div class="button">
+  <div class="button" @click="handleClick()">
     <slot></slot>
   </div>
 </template>
@@ -7,6 +7,11 @@
 <script>
 export default {
   name: 'Button',
+  methods: {
+    handleClick() {
+      this.$emit('click');
+    },
+  },
 };
 </script>
 

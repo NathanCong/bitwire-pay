@@ -41,6 +41,16 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/kyc1',
+    name: 'Kyc1',
+    component: () => import(/* webpackChunkName: "kyc1" */ '@/views/Kyc1.vue'),
+  },
+  {
+    path: '/kyc2',
+    name: 'Kyc2',
+    component: () => import(/* webpackChunkName: "kyc2" */ '@/views/Kyc2.vue'),
+  },
 ];
 
 const router = new VueRouter({

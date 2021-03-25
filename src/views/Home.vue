@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-    <div class="back-button">
-      <span class="back-button-icon"></span>
-      <span class="back-button-text">Back</span>
-    </div>
+    <GoBackLink class="go-back" />
     <Layout>
       <template #layout-left-content>
         <div class="pay-info">
@@ -32,11 +29,13 @@
 
 <script>
 import Layout from '@/components/common/Layout.vue';
+import GoBackLink from '@/components/GoBackLink.vue';
 
 export default {
   name: 'Home',
   components: {
     Layout,
+    GoBackLink,
   },
 };
 </script>
@@ -48,25 +47,10 @@ export default {
   position: relative;
 }
 
-.back-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.go-back {
   position: absolute;
   top: 46px;
   left: 60px;
-  .back-button-icon {
-    width: 36px;
-    height: 38px;
-    background-image: url('~@/assets/back_icon.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    margin-right: 20px;
-  }
-  .back-button-text {
-    font-size: 36px;
-    color: #fff;
-  }
 }
 
 .pay-info {

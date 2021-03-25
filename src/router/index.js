@@ -19,10 +19,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
     children: [
       {
-        path: '/',
-        redirect: '/home/options',
-      },
-      {
         path: 'options',
         component: () => import(/* webpackChunkName: "options" */ '@/components/Options.vue'),
       },

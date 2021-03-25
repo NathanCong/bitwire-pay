@@ -16,6 +16,7 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    redirect: '/home/options',
     component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
     children: [
       {
@@ -25,10 +26,6 @@ const routes = [
       {
         path: 'cards',
         component: () => import(/* webpackChunkName: "cards" */ '@/components/Cards.vue'),
-      },
-      {
-        path: 'wallet',
-        component: () => import(/* webpackChunkName: "wallet" */ '@/components/Wallet.vue'),
       },
       {
         path: 'wallet',

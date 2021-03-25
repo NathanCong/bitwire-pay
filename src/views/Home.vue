@@ -22,7 +22,9 @@
           </section>
         </div>
       </template>
-      <template #layout-right-content></template>
+      <template #layout-right-content>
+        <router-view />
+      </template>
     </Layout>
   </div>
 </template>

@@ -84,10 +84,12 @@ export default {
         username: this.account,
         password: this.password,
       }).then((res) => {
-        const { data: { errCode } } = res;
-        if (errCode === 0) {
-          this.$router.push('/home');
+        const { data: { errCode, errMsg } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
         }
+        this.$router.push('/home');
       }).catch((err) => {
         this.$toast({ content: err.message, duration: 1000 });
       });

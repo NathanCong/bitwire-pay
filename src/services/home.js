@@ -23,3 +23,11 @@ export function getWalletList() {
 export function getBankList() {
   return get('/mocks/home/bankList.json');
 }
+
+/**
+ * 提交银行卡信息
+ * @returns {Promise} 服务器响应结果
+ */
+export function submitCard(params = {}) {
+  return get('/mocks/home/submitCard.json', params);
+}

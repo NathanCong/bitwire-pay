@@ -12,12 +12,8 @@
 <script>
 // 加载组件
 import { Container, List } from '@/components/common';
-// 加载图片
-import CardsLogo from '@/assets/cards_logo.png';
-import WalletLogo from '@/assets/wallet_logo.png';
-import BankLogo from '@/assets/bank_logo.png';
-import UpiLogo from '@/assets/upi_logo.png';
-import GooglePayLogo from '@/assets/google_pay_logo.png';
+// 加载接口
+import { getPaymentOptions } from '@/services/home';
 
 export default {
   name: 'Options',
@@ -27,34 +23,26 @@ export default {
   },
   data() {
     return {
-      listConfig: [
-        {
-          key: 'cards',
-          icon: CardsLogo,
-          name: 'Cards(Credit/Debit)',
-        },
-        {
-          key: 'wallet',
-          icon: WalletLogo,
-          name: 'Wallet',
-        },
-        {
-          key: 'bank',
-          icon: BankLogo,
-          name: 'Net Banking',
-        },
-        {
-          key: 'upi',
-          icon: UpiLogo,
-          name: 'UPI',
-        },
-        {
-          key: 'googlePay',
-          icon: GooglePayLogo,
-          name: 'Google Pay',
-        },
-      ],
+      listConfig: [],
     };
+  },
+  created() {
+    this.getPaymentOptions();
+  },
+  methods: {
+    // 获取支付方式
+    getPaymentOptions() {
+      getPaymentOptions().then((res) => {
+        const { data: { errCode, errMsg, data } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.listConfig = data.paymentOptions;
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
   },
 };
 </script>

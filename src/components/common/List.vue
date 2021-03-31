@@ -1,6 +1,10 @@
 <template>
   <div class="list">
-    <section class="list-item" v-for="item in listConfig" :key="item.key">
+    <section
+      class="list-item"
+      v-for="item in listConfig"
+      :key="item.key"
+      @click="handleListItemClick(item)">
       <img class="list-item-icon" :src="item.icon" />
       <span class="list-item-text">{{ item.name }}</span>
     </section>
@@ -14,6 +18,18 @@ export default {
     listConfig: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    handleListItemClick(item = {}) {
+      const { path, link } = item || {};
+      if (link) { // 跳转外部链接
+        window.location.href = link;
+        return;
+      }
+      if (path) { // 跳转内部路由
+        this.$router.push(path);
+      }
     },
   },
 };

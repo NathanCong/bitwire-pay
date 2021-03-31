@@ -11,7 +11,7 @@ Axios.defaults.baseURL = '/';
  * @param {Object} params 请求参数
  * @returns {Promise}     响应结果
  */
-export function get(url, params) {
+export function get(url, params = {}) {
   return Axios.get(url, { params });
 }
 
@@ -21,6 +21,6 @@ export function get(url, params) {
  * @param {Object} params 请求参数
  * @returns {Promise}     响应结果
  */
-export function post(url, params) {
+export function post(url, params = {}) {
   return Axios.post(url, params);
 }

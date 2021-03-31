@@ -1,0 +1,43 @@
+{
+    "errCode": 0,
+    "errMsg": "OK",
+    "data": {
+        "paymentOptions": [
+            {
+                "key": "cards",
+                "icon": "/assets/cards_logo.png",
+                "name": "Cards(Credit/Debit)",
+                "path": "/home/cards",
+                "link": ""
+            },
+            {
+                "key": "wallet",
+                "icon": "/assets/wallet_logo.png",
+                "name": "Wallet",
+                "path": "/home/wallet",
+                "link": ""
+            },
+            {
+                "key": "bank",
+                "icon": "/assets/bank_logo.png",
+                "name": "Net Banking",
+                "path": "/home/bank",
+                "link": ""
+            },
+            {
+                "key": "upi",
+                "icon": "/assets/upi_logo.png",
+                "name": "UPI",
+                "path": "/home/upi",
+                "link": ""
+            },
+            {
+                "key": "googlePay",
+                "icon": "/assets/google_pay_logo.png",
+                "name": "Google Pay",
+                "path": "",
+                "link": "https://www.baidu.com"
+            }
+        ]
+    }
+}

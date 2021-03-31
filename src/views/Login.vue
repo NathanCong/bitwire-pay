@@ -56,6 +56,9 @@ export default {
     Input,
     Button,
   },
+  mounted() {
+    this.$toast({ content: 'test message', duration: 2000 });
+  },
 };
 </script>
 

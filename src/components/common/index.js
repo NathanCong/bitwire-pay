@@ -7,6 +7,7 @@ import Label from './Label.vue';
 import Layout from './Layout.vue';
 import List from './List.vue';
 import Row from './Row.vue';
+import Toast from './Toast.vue';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Layout,
   List,
   Row,
+  Toast,
 };

@@ -3,8 +3,20 @@
     <div class="app-container">
       <router-view />
     </div>
+    <Toast />
   </div>
 </template>
+
+<script>
+import { Toast } from '@/components/common';
+
+export default {
+  name: 'App',
+  components: {
+    Toast,
+  },
+};
+</script>
 
 <style lang="less">
 #app {

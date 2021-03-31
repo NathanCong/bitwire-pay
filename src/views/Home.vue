@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <Layout :showGoBack="true">
+    <Layout
+      :showGoBack="true"
+      :goBackCallback="handleHomeGoBack"
+    >
       <template #layout-left-container>
         <div class="pay-info">
           <header class="pay-shop">Shop Name</header>
@@ -38,6 +41,12 @@ export default {
   name: 'Home',
   components: {
     Layout,
+  },
+  methods: {
+    // 返回按钮事件
+    handleHomeGoBack() {
+      console.log('handleHomeGoBack');
+    },
   },
 };
 </script>

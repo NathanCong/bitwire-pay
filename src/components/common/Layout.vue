@@ -1,7 +1,10 @@
 <template>
   <div class="layout">
     <div class="layout-left">
-      <div class="go-back" v-if="showGoBack">
+      <div
+        class="go-back"
+        v-if="showGoBack"
+        @click="goBackCallback">
         <span class="go-back-icon"></span>
         <span class="go-back-text">Back</span>
       </div>
@@ -21,6 +24,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    goBackCallback: { // 返回按钮回调函数
+      type: Function,
+      required: false,
+      default: () => { console.log('handleGoBack'); },
     },
   },
 };

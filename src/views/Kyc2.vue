@@ -1,7 +1,6 @@
 <template>
   <div class="kyc2">
-    <GoBackLink class="go-back" />
-    <Layout>
+    <Layout :showGoBack="true">
       <template #layout-left-container>
         <div class="kyc2-pan-card">
           <header class="kyc2-pan-card-header">Verify Pan Card</header>
@@ -58,7 +57,6 @@
 </template>
 
 <script>
-import GoBackLink from '@/components/GoBackLink.vue';
 import Layout from '@/components/common/Layout.vue';
 import Card from '@/components/common/Card.vue';
 import Label from '@/components/common/Label.vue';
@@ -69,7 +67,6 @@ import Select from '@/components/common/Select.vue';
 export default {
   name: 'Kyc2',
   components: {
-    GoBackLink,
     Layout,
     Card,
     Label,
@@ -85,12 +82,6 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-}
-
-.go-back {
-  position: absolute;
-  top: 46px;
-  left: 60px;
 }
 
 .kyc2-pan-card {

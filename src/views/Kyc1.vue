@@ -1,7 +1,6 @@
 <template>
   <div class="kyc1">
-    <GoBackLink class="go-back" />
-    <Layout>
+    <Layout :showGoBack="true">
       <template #layout-left-container>
         <div class="kyc-info">
           <p class="kyc-info-question">What is KYC?</p>
@@ -64,7 +63,6 @@
 </template>
 
 <script>
-import GoBackLink from '@/components/GoBackLink.vue';
 import Layout from '@/components/common/Layout.vue';
 import Card from '@/components/common/Card.vue';
 import Label from '@/components/common/Label.vue';
@@ -76,7 +74,6 @@ import MobileLogo from '@/assets/mobile_logo.png';
 export default {
   name: 'Kyc1',
   components: {
-    GoBackLink,
     Layout,
     Card,
     Label,
@@ -115,12 +112,6 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-}
-
-.go-back {
-  position: absolute;
-  top: 46px;
-  left: 60px;
 }
 
 .kyc-info {

@@ -1,23 +1,25 @@
 <template>
   <div class="home">
-    <GoBackLink class="go-back" />
-    <Layout>
+    <Layout :showGoBack="true">
       <template #layout-left-container>
         <div class="pay-info">
-          <p class="pay-shop-name">Shop Name</p>
-          <p class="pay-money-number">₹ 99,999.00</p>
-          <section class="pay-order-detail">
-            <section class="pay-order-detail-item">
-              <p class="pay-order-detail-label">Merchant Name</p>
-              <p class="pay-order-detail-value">RMG Game</p>
+          <header class="pay-shop">Shop Name</header>
+          <section class="pay-money">
+            <span class="pay-unit">₹</span>
+            <span class="pay-number">99,999.00</span>
+          </section>
+          <section class="pay-detail-list">
+            <section class="pay-detail-item">
+              <p class="pay-detail-label">Merchant Name</p>
+              <p class="pay-detail-value">RMG Game</p>
             </section>
-            <section class="pay-order-detail-item">
-              <p class="pay-order-detail-label">Order ID</p>
-              <p class="pay-order-detail-value">99999999</p>
+            <section class="pay-detail-item">
+              <p class="pay-detail-label">Order ID</p>
+              <p class="pay-detail-value">99999999</p>
             </section>
-            <section class="pay-order-detail-item">
-              <p class="pay-order-detail-label">Amount</p>
-              <p class="pay-order-detail-value">₹ 100</p>
+            <section class="pay-detail-item">
+              <p class="pay-detail-label">Amount</p>
+              <p class="pay-detail-value">₹100</p>
             </section>
           </section>
         </div>
@@ -31,13 +33,11 @@
 
 <script>
 import Layout from '@/components/common/Layout.vue';
-import GoBackLink from '@/components/GoBackLink.vue';
 
 export default {
   name: 'Home',
   components: {
     Layout,
-    GoBackLink,
   },
 };
 </script>
@@ -46,48 +46,52 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-  position: relative;
-}
-
-.go-back {
-  position: absolute;
-  top: 46px;
-  left: 60px;
 }
 
 .pay-info {
   color: #fff;
-  .pay-shop-name {
+  .pay-shop {
     font-size: 58px;
     text-align: center;
-    margin-top: 80px;
-    padding: 40px 0;
+    margin-top: 106px;
   }
-  .pay-money-number {
-    font-size: 72px;
-    color: #c16535;
-    font-weight: bold;
+  .pay-money {
+    margin-top: 50px;
     background-color: #fff;
-    border-radius: 35px;
-    padding: 20px 0;
+    border-radius: 30px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pay-unit,
+    .pay-number {
+      color: #c16535;
+      font-size: 72px;
+    }
+    .pay-unit {
+      font-weight: 400;
+    }
+    .pay-number {
+      font-weight: 600;
+    }
   }
-  .pay-order-detail {
-    margin-top: 80px;
+  .pay-detail-list {
+    margin-top: 74px;
     box-sizing: border-box;
-    padding: 0 50px;
-    .pay-order-detail-item {
+    padding: 0 48px;
+    .pay-detail-item {
       margin-top: 40px;
       display: flex;
       align-items: center;
-      .pay-order-detail-label,
-      .pay-order-detail-value {
+      .pay-detail-label,
+      .pay-detail-value {
         flex: 1;
         font-size: 32px;
       }
-      .pay-order-detail-label {
+      .pay-detail-label {
         text-align: left;
       }
-      .pay-order-detail-value {
+      .pay-detail-value {
         text-align: right;
       }
     }

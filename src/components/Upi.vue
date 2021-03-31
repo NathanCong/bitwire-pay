@@ -1,19 +1,17 @@
 <template>
   <div class="upi">
-    <div class="upi-title global-title">Payment Options</div>
-    <SubTitle
-      class="upi-subtitle"
-      value="Choose your UPI" />
-    <Card class="upi-panel-wrapper" :opacity="0.8">
-      <div class="upi-panel">
-        <List class="upi-list" :listConfig="listConfig" />
+    <Container
+      title="Payment Options"
+      subtitle="Choose your UPI"
+    >
+      <div class="upi-content">
+        <div class="upi-list">
+          <List :listConfig="listConfig" />
+        </div>
         <div class="upi-form">
           <section class="upi-form-item">
             <Row>
-              <Input
-                class="upi-form-input"
-                type="text"
-              />
+              <Input class="upi-form-input" type="text" />
               <span class="upi-form-input-text">@paytm</span>
             </Row>
           </section>
@@ -25,23 +23,26 @@
               </span>
             </Row>
           </section>
-          <section class="upi-form-item no-mb">
+          <section class="upi-form-item">
             <Button class="upi-form-button">Proceed</Button>
           </section>
         </div>
       </div>
-    </Card>
+    </Container>
   </div>
 </template>
 
 <script>
-import SubTitle from '@/components/common/SubTitle.vue';
-import Card from '@/components/common/Card.vue';
-import List from '@/components/common/List.vue';
-import Input from '@/components/common/Input.vue';
-import Button from '@/components/common/Button.vue';
-import Row from '@/components/common/Row.vue';
-import Checkbox from '@/components/common/Checkbox.vue';
+// 加载组件
+import {
+  Container,
+  List,
+  Input,
+  Button,
+  Row,
+  Checkbox,
+} from '@/components/common';
+// 加载图片
 import CardsLogo from '@/assets/cards_logo.png';
 import WalletLogo from '@/assets/wallet_logo.png';
 import BankLogo from '@/assets/bank_logo.png';
@@ -50,8 +51,7 @@ import UpiLogo from '@/assets/upi_logo.png';
 export default {
   name: 'Upi',
   components: {
-    SubTitle,
-    Card,
+    Container,
     List,
     Input,
     Button,
@@ -91,55 +91,47 @@ export default {
 .upi {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  padding-top: 76px;
-  display: flex;
-  flex-direction: column;
-  .upi-title,
-  .upi-subtitle {
-    padding-left: 56px;
+  .upi-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-bottom: 66px;
   }
-  .upi-subtitle,
-  .upi-panel-wrapper {
-    margin-top: 20px;
-    padding-top: 0;
-    .upi-panel {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      .upi-form {
-        width: 100%;
-        height: 260px;
-        margin-top: 20px;
-        .upi-form-input {
-          height: 70px;
-          line-height: 70px;
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-          padding-right: 0;
-        }
-        .upi-form-input-text {
-          font-size: 28px;
-          color: #fff;
-          background-color: #ded7d4;
-          line-height: 70px;
-          height: 70px;
-          box-sizing: border-box;
-          padding: 0 25px;
-          border-radius: 8px;
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-        .upi-form-checkbox {
-          margin-right: 10px;
-        }
-        .upi-form-checkbox-text {
-          font-size: 28px;
-          color: #d28f64;
-          padding: 20px 0;
-        }
-      }
+  .upi-list {
+    flex: 1;
+    border-bottom: 1px solid #f9f0ea;
+  }
+  .upi-form {
+    .upi-form-item {
+      padding-top: 30px;
+    }
+    .upi-form-input {
+      height: 70px;
+      line-height: 70px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-right: 0;
+    }
+    .upi-form-input-text {
+      font-size: 28px;
+      color: #fff;
+      background-color: #ded7d4;
+      line-height: 70px;
+      height: 70px;
+      box-sizing: border-box;
+      padding: 0 25px;
+      border-radius: 8px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .upi-form-checkbox {
+      margin-right: 10px;
+    }
+    .upi-form-checkbox-text {
+      color: #d28f64;
+      font-size: 28px;
     }
   }
 }

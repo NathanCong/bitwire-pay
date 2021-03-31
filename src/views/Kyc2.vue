@@ -15,64 +15,71 @@
         </div>
       </template>
       <template #layout-right-container>
-        <div class="kyc2-wrapper">
-          <div class="global-title">Pan</div>
-          <section class="kyc2-form-wrapper">
-            <Card :opacity="0.8" class="kyc2-form-card">
-              <div class="kyc2-form">
-                <section class="kyc2-form-item">
-                  <Label value="Name" />
-                  <Input
-                    class="kyc2-form-input"
-                    type="text"
-                    placeholder="Please input your name"
-                  />
-                </section>
-                <section class="kyc2-form-item">
-                  <Label value="Pan Number" />
-                  <Input
-                    class="kyc2-form-input"
-                    type="password"
-                    placeholder="Input Pan cam number"
-                  />
-                </section>
-                <section class="kyc2-form-item">
-                  <Label value="Dale of birth" />
-                  <Select class="kyc2-form-select" />
-                </section>
-                <section class="kyc2-form-item">
-                  <Label value="Province" />
-                  <Select class="kyc2-form-select" />
-                </section>
-                <section class="kyc2-form-item">
-                  <Button class="kyc2-form-button">SUBMIT</Button>
-                </section>
+        <Container title="Pan">
+          <div class="kyc2-form">
+            <section class="kyc2-form-item">
+              <Label value="Name" />
+              <Input
+                class="kyc2-form-input"
+                type="text"
+                placeholder="Please input your name"
+              />
+            </section>
+            <section class="kyc2-form-item">
+              <Label value="Pan Number" />
+              <Input
+                class="kyc2-form-input"
+                type="password"
+                placeholder="Input Pan cam number"
+              />
+            </section>
+            <section class="kyc2-form-item">
+              <Label value="Dale of birth" />
+              <div class="kyc2-form-select">
+                <div class="kyc2-form-select-default" v-if="!birth">Please select birth</div>
+                <div class="kyc2-form-select-value" v-if="birth">{{ birth }}</div>
+                <div class="kyc2-form-select-button">select</div>
               </div>
-            </Card>
-          </section>
-        </div>
+            </section>
+            <section class="kyc2-form-item">
+              <Label value="Province" />
+              <div class="kyc2-form-select">
+                <div class="kyc2-form-select-default" v-if="!province">Please select province</div>
+                <div class="kyc2-form-select-value" v-if="province"></div>
+                <div class="kyc2-form-select-button">select</div>
+              </div>
+            </section>
+            <Button class="kyc2-form-button">SUBMIT</Button>
+          </div>
+        </Container>
       </template>
     </Layout>
   </div>
 </template>
 
 <script>
-import Layout from '@/components/common/Layout.vue';
-import Card from '@/components/common/Card.vue';
-import Label from '@/components/common/Label.vue';
-import Input from '@/components/common/Input.vue';
-import Button from '@/components/common/Button.vue';
-import Select from '@/components/common/Select.vue';
+import {
+  Layout,
+  Container,
+  Label,
+  Input,
+  Button,
+} from '@/components/common';
 
 export default {
   name: 'Kyc2',
   components: {
     Layout,
-    Card,
+    Container,
     Label,
     Input,
     Button,
-    Select,
+  },
+  data() {
+    return {
+      birth: '', // 生日
+      province: '', // 省份
+    };
   },
 };
 </script>
@@ -85,7 +92,9 @@ export default {
 }
 
 .kyc2-pan-card {
-  padding: 70px 90px 0 90px;
+  padding-top: 80px;
+  width: 662px;
+  margin: 0 auto;
   .kyc2-pan-card-header {
     background-image: url('~@/assets/card_logo.png');
     background-repeat: no-repeat;
@@ -98,18 +107,18 @@ export default {
   }
   .kyc2-pan-card-display {
     width: 100%;
-    height: 400px;
+    height: 377px;
     position: relative;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 35px;
-    margin-top: 30px;
+    margin-top: 33px;
     display: flex;
     justify-content: center;
     align-items: center;
     .kyc2-pan-card-icon {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 18px;
+      right: 18px;
       width: 41px;
       height: 41px;
       background-image: url('~@/assets/warn_logo.png');
@@ -122,12 +131,12 @@ export default {
     }
   }
   .kyc2-pan-card-buttons {
-    margin-top: 40px;
+    margin-top: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     .kyc2-pan-card-button {
-      margin: 0 30px;
+      margin: 0 25px;
       width: 100px;
       height: 100px;
       background-repeat: no-repeat;
@@ -142,36 +151,51 @@ export default {
   }
 }
 
-.kyc2-wrapper {
+.kyc2-form {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  .kyc2-title {
-    padding-left: 56px;
+  padding-top: 35px;
+  box-sizing: border-box;
+  .kyc2-form-item {
+    padding-bottom: 20px;
   }
-  .kyc2-form-card {
-    padding-top: 20px;
+  .kyc2-form-input,
+  .kyc2-form-select {
+    height: 70px;
+    line-height: 70px;
+    margin-top: 20px;
   }
-  .kyc2-form-wrapper {
-    width: 100%;
-    height: 816px;
-    margin-top: 39px;
-    .kyc2-form {
-      .kyc2-form-item {
-        padding-top: 20px;
-      }
-      .kyc2-form-input,
-      .kyc2-form-select {
-        height: 70px;
-        line-height: 70px;
-        margin-top: 20px;
-      }
-      .kyc2-form-button {
-        margin-top: 20px;
-      }
+  .kyc2-form-select {
+    display: flex;
+    .kyc2-form-select-default,
+    .kyc2-form-select-value {
+      flex: 1;
+      background-color: #ded7d4;
+      border-radius: 8px;
+      text-align: left;
+      box-sizing: border-box;
+      padding: 0 25px;
     }
+    .kyc2-form-select-default {
+      color: #fff;
+      font-size: 28px;
+    }
+    .kyc2-form-select-value {
+      color: #573625;
+      font-size: 36px;
+    }
+    .kyc2-form-select-button {
+      width: 148px;
+      height: 100%;
+      background: #cb7940;
+      color: #fff;
+      font-size: 32px;
+      border-radius: 8px;
+      margin-left: 10px;
+    }
+  }
+  .kyc2-form-button {
+    margin-top: 30px;
   }
 }
 </style>

@@ -17,8 +17,8 @@ export default {
 
 <style lang="less" scoped>
 .checkbox {
-  width: 36px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   position: relative;
   background-color: #ded7d4;
   border-radius: 8px;
@@ -29,7 +29,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 0;
   }
 }

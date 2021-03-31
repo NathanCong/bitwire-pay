@@ -7,8 +7,6 @@ import Label from './Label.vue';
 import Layout from './Layout.vue';
 import List from './List.vue';
 import Row from './Row.vue';
-import Select from './Select.vue';
-import SubTitle from './SubTitle.vue';
 
 export {
   Button,
@@ -20,6 +18,4 @@ export {
   Layout,
   List,
   Row,
-  Select,
-  SubTitle,
 };

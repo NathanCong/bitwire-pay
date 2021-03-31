@@ -43,8 +43,8 @@ export default {
   padding: 0 25px;
   text-align: left;
   &::placeholder {
-    font-size: 28px;
     color: #fff;
+    font-size: 28px;
   }
 }
 </style>

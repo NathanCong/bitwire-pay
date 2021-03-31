@@ -2,8 +2,9 @@
   <input
     class="input"
     :type="type"
-    :value="defaultValue"
+    :value="value"
     :placeholder="placeholder"
+    @input="$emit('input', $event.target.value)"
   >
 </template>
 
@@ -15,7 +16,7 @@ export default {
       type: String,
       required: true,
     },
-    defaultValue: { // 输入框默认值
+    value: { // 输入框值
       type: String,
       required: false,
       default: '',

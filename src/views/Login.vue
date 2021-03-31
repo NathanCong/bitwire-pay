@@ -20,6 +20,7 @@
                 class="login-form-input"
                 type="text"
                 placeholder="Enter your username or Email"
+                v-model="account"
               />
             </section>
             <section class="login-form-item">
@@ -28,9 +29,12 @@
                 class="login-form-input"
                 type="password"
                 placeholder="Enter your Password"
+                v-model="password"
               />
             </section>
-            <Button class="login-form-button">Sign In Securely</Button>
+            <Button
+              class="login-form-button"
+              @click="handleLoginClick()">Sign In Securely</Button>
           </Card>
         </div>
       </template>
@@ -39,6 +43,7 @@
 </template>
 
 <script>
+// 加载组件
 import {
   Layout,
   Card,
@@ -46,6 +51,8 @@ import {
   Input,
   Button,
 } from '@/components/common';
+// 加载接口
+import { login } from '@/services/login';
 
 export default {
   name: 'Login',
@@ -56,8 +63,35 @@ export default {
     Input,
     Button,
   },
-  mounted() {
-    this.$toast({ content: 'test message', duration: 2000 });
+  data() {
+    return {
+      account: '', // 登录账号
+      password: '', // 登录密码
+    };
+  },
+  methods: {
+    // 登录按钮事件
+    handleLoginClick() {
+      if (!this.account) { // 账号校验
+        this.$toast({ content: 'Username or Email can\'t be empty', duration: 1000 });
+        return;
+      }
+      if (!this.password) { // 密码校验
+        this.$toast({ content: 'Password can\'t be empty', duration: 1000 });
+        return;
+      }
+      login({
+        username: this.account,
+        password: this.password,
+      }).then((res) => {
+        const { data: { errCode } } = res;
+        if (errCode === 0) {
+          this.$router.push('/home');
+        }
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
   },
 };
 </script>

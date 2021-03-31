@@ -3,7 +3,7 @@ import Axios from 'axios';
 /**
  * 全局 URL 设置
  */
-Axios.defaults.baseURL = window.location.origin;
+Axios.defaults.baseURL = '/';
 
 /**
  * Get 请求

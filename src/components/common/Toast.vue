@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" v-if="visible">
+  <div class="toast" v-show="visible">
     <div class="toast-content">{{ content }}</div>
   </div>
 </template>
@@ -20,8 +20,11 @@ export default {
       if (time > 0 && !this.timer) {
         this.visible = true;
         this.timer = setTimeout(() => {
-          this.visible = false;
           clearTimeout(this.timer);
+          this.visible = false;
+          this.content = '';
+          this.duration = 0;
+          this.timer = null;
         }, time);
       }
     },

@@ -1,8 +1,6 @@
 <template>
   <div class="options">
-    <Title
-      class="options-title"
-      value="Payment Options" />
+    <div class="options-title global-title">Payment Options</div>
     <SubTitle
       class="options-subtitle"
       value="Choose a payment option" />
@@ -13,7 +11,6 @@
 </template>
 
 <script>
-import Title from '@/components/common/Title.vue';
 import SubTitle from '@/components/common/SubTitle.vue';
 import Card from '@/components/common/Card.vue';
 import List from '@/components/common/List.vue';
@@ -26,7 +23,6 @@ import GooglePayLogo from '@/assets/google_pay_logo.png';
 export default {
   name: 'Options',
   components: {
-    Title,
     SubTitle,
     Card,
     List,

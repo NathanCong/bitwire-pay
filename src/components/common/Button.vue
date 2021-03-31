@@ -21,7 +21,7 @@ export default {
   height: 91px;
   line-height: 91px;
   background-color: #ec793c;
-  border-radius: 16px;
+  border-radius: 14px;
   color: #fbfdfd;
   font-size: 46px;
   font-weight: bold;

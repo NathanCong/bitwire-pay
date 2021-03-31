@@ -1,8 +1,6 @@
 <template>
   <div class="upi">
-    <Title
-      class="upi-title"
-      value="Payment Options" />
+    <div class="upi-title global-title">Payment Options</div>
     <SubTitle
       class="upi-subtitle"
       value="Choose your UPI" />
@@ -37,7 +35,6 @@
 </template>
 
 <script>
-import Title from '@/components/common/Title.vue';
 import SubTitle from '@/components/common/SubTitle.vue';
 import Card from '@/components/common/Card.vue';
 import List from '@/components/common/List.vue';
@@ -53,7 +50,6 @@ import UpiLogo from '@/assets/upi_logo.png';
 export default {
   name: 'Upi',
   components: {
-    Title,
     SubTitle,
     Card,
     List,

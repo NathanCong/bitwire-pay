@@ -1,43 +1,37 @@
 <template>
   <div class="login">
     <Layout>
-      <template #layout-left-content>
-        <Card bgColor="#c2723a" :opacity="0.65">
-          <div class="login-info">
-            <p class="login-info-logo">LOGO</p>
-            <p class="login-info-name">Bitwire Pay</p>
-            <p class="login-info-desc">The best payment gateway&payouts for India</p>
+      <template #layout-left-container>
+        <Card backgroundColor="#c2723a" :opacity="0.65">
+          <div class="login-left-wrapper">
+            <p class="pay-logo">LOGO</p>
+            <p class="pay-name">Bitwire Pay</p>
+            <p class="pay-desc">The best payment gateway&payouts for India</p>
           </div>
         </Card>
       </template>
-      <template #layout-right-content>
-        <div class="login-wrapper">
-          <Title class="login-title" value="Sign In" />
-          <section class="login-form-wrapper">
-            <Card :opacity="0.8">
-              <div class="login-form">
-                <section class="login-form-item">
-                  <Label value="Email" />
-                  <Input
-                    class="login-form-input"
-                    type="text"
-                    placeholder="Enter your username or Email"
-                  />
-                </section>
-                <section class="login-form-item">
-                  <Label value="Password" />
-                  <Input
-                    class="login-form-input"
-                    type="password"
-                    placeholder="Enter your Password"
-                  />
-                </section>
-                <section class="login-form-item">
-                  <Button class="login-form-button">Sign In Securely</Button>
-                </section>
-              </div>
-            </Card>
-          </section>
+      <template #layout-right-container>
+        <div class="login-right-wrapper">
+          <div class="login-title global-title">Sign In</div>
+          <Card class="login-form" :opacity="0.8" :borderRadius="40">
+            <section class="login-form-item">
+              <Label value="Email" />
+              <Input
+                class="login-form-input"
+                type="text"
+                placeholder="Enter your username or Email"
+              />
+            </section>
+            <section class="login-form-item">
+              <Label value="Password" />
+              <Input
+                class="login-form-input"
+                type="password"
+                placeholder="Enter your Password"
+              />
+            </section>
+            <Button class="login-form-button">Sign In Securely</Button>
+          </Card>
         </div>
       </template>
     </Layout>
@@ -45,12 +39,13 @@
 </template>
 
 <script>
-import Layout from '@/components/common/Layout.vue';
-import Card from '@/components/common/Card.vue';
-import Label from '@/components/common/Label.vue';
-import Input from '@/components/common/Input.vue';
-import Button from '@/components/common/Button.vue';
-import Title from '@/components/common/Title.vue';
+import {
+  Layout,
+  Card,
+  Label,
+  Input,
+  Button,
+} from '@/components/common';
 
 export default {
   name: 'Login',
@@ -60,7 +55,6 @@ export default {
     Label,
     Input,
     Button,
-    Title,
   },
 };
 </script>
@@ -71,48 +65,47 @@ export default {
   height: 100%;
 }
 
-.login-info {
+.login-left-wrapper {
   color: #ffefdd;
   font-weight: 400;
-  .login-info-logo {
+  .pay-logo {
     text-align: left;
     font-size: 45px;
+    padding-left: 13px;
   }
-  .login-info-name {
+  .pay-name {
     font-size: 56px;
-    padding-top: 115px;
-    padding-bottom: 115px;
+    padding-top: 76px;
   }
-  .login-info-desc {
+  .pay-desc {
     font-size: 46px;
+    padding-top: 150px;
   }
 }
 
-.login-wrapper {
+.login-right-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  box-sizing: border-box;
+  padding-top: 80px;
   .login-title {
     padding-left: 56px;
   }
-  .login-form-wrapper {
-    width: 100%;
-    height: 816px;
-    margin-top: 39px;
-    .login-form {
-      .login-form-item {
-        padding-top: 20px;
-      }
-      .login-form-input {
-        height: 70px;
-        line-height: 70px;
-        margin-top: 20px;
-      }
-      .login-form-button {
-        margin-top: 43px;
-      }
+  .login-form {
+    margin-top: 36px;
+    padding: 50px 56px;
+    .login-form-item {
+      padding-bottom: 30px;
+    }
+    .login-form-input {
+      height: 70px;
+      line-height: 70px;
+      margin-top: 20px;
+    }
+    .login-form-button {
+      margin-top: 60px;
     }
   }
 }

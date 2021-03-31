@@ -2,7 +2,7 @@
   <div class="kyc1">
     <GoBackLink class="go-back" />
     <Layout>
-      <template #layout-left-content>
+      <template #layout-left-container>
         <div class="kyc-info">
           <p class="kyc-info-question">What is KYC?</p>
           <p class="kyc-info-answer">
@@ -14,9 +14,9 @@
           </p>
         </div>
       </template>
-      <template #layout-right-content>
+      <template #layout-right-container>
         <div class="kyc1-wrapper">
-          <Title class="kyc1-title" value="Mobile&Email" />
+          <div class="global-title">Mobile&Email</div>
           <section class="kyc1-form-wrapper">
             <Card :opacity="0.8">
               <div class="kyc1-form">
@@ -70,7 +70,6 @@ import Card from '@/components/common/Card.vue';
 import Label from '@/components/common/Label.vue';
 import Input from '@/components/common/Input.vue';
 import Button from '@/components/common/Button.vue';
-import Title from '@/components/common/Title.vue';
 import EmailLogo from '@/assets/email_logo.png';
 import MobileLogo from '@/assets/mobile_logo.png';
 
@@ -83,7 +82,6 @@ export default {
     Label,
     Input,
     Button,
-    Title,
   },
   data() {
     return {

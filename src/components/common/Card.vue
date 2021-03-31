@@ -1,5 +1,8 @@
 <template>
-  <div class="card" :style="{ background: bgStyle }">
+  <div
+    :class="['card', `br-${borderRadius}`]"
+    :style="{ background: `rgba(${rgb},${opacity})` }"
+  >
     <slot></slot>
   </div>
 </template>
@@ -8,7 +11,7 @@
 export default {
   name: 'Card',
   props: {
-    bgColor: { // 背景色
+    backgroundColor: { // 背景色
       type: String,
       required: false,
       default: '#fff',
@@ -18,11 +21,15 @@ export default {
       required: false,
       default: 1,
     },
+    borderRadius: { // 圆角
+      type: Number,
+      required: false,
+      default: 35,
+    },
   },
   computed: {
-    bgStyle() {
-      const rgb = this.hexConvertRGB(this.bgColor);
-      return `rgba(${rgb},${this.opacity})`;
+    rgb() {
+      return this.hexConvertRGB(this.backgroundColor);
     },
   },
   methods: {
@@ -57,8 +64,13 @@ export default {
 .card {
   width: 100%;
   height: 100%;
-  border-radius: 35px;
   box-sizing: border-box;
-  padding: 56px;
+  padding: 50px 43px;
+  &.br-35 {
+    border-radius: 35px;
+  }
+  &.br-40 {
+    border-radius: 40px;
+  }
 }
 </style>

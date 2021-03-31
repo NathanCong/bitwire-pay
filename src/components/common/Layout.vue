@@ -1,19 +1,13 @@
 <template>
   <div class="layout">
     <div class="layout-left">
-      <slot name="layout-left-content"></slot>
+      <slot name="layout-left-container"></slot>
     </div>
     <div class="layout-right">
-      <slot name="layout-right-content"></slot>
+      <slot name="layout-right-container"></slot>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Layout',
-};
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
@@ -27,10 +21,6 @@ export default {
     8px 0 21px rgba(70, 62, 56, 0.09),
     0 -8px 21px rgba(70, 62, 56, 0.09),
     -8px 0 21px rgba(70, 62, 56, 0.09);
-    // 0 8px 21px gray,
-    // 8px 0 21px gray,
-    // 0 -8px 21px gray,
-    // -8px 0 21px gray;
   overflow: hidden;
   display: flex;
 }

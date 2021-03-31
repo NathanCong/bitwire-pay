@@ -2,7 +2,7 @@
   <div class="kyc2">
     <GoBackLink class="go-back" />
     <Layout>
-      <template #layout-left-content>
+      <template #layout-left-container>
         <div class="kyc2-pan-card">
           <header class="kyc2-pan-card-header">Verify Pan Card</header>
           <main class="kyc2-pan-card-display">
@@ -15,9 +15,9 @@
           </footer>
         </div>
       </template>
-      <template #layout-right-content>
+      <template #layout-right-container>
         <div class="kyc2-wrapper">
-          <Title class="kyc2-title" value="Pan" />
+          <div class="global-title">Pan</div>
           <section class="kyc2-form-wrapper">
             <Card :opacity="0.8" class="kyc2-form-card">
               <div class="kyc2-form">
@@ -64,7 +64,6 @@ import Card from '@/components/common/Card.vue';
 import Label from '@/components/common/Label.vue';
 import Input from '@/components/common/Input.vue';
 import Button from '@/components/common/Button.vue';
-import Title from '@/components/common/Title.vue';
 import Select from '@/components/common/Select.vue';
 
 export default {
@@ -76,7 +75,6 @@ export default {
     Label,
     Input,
     Button,
-    Title,
     Select,
   },
 };

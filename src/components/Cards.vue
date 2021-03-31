@@ -1,8 +1,6 @@
 <template>
   <div class="cards">
-    <Title
-      class="cards-title"
-      value="Payment Options" />
+    <div class="cards-title global-title">Payment Options</div>
     <SubTitle
       class="cards-subtitle"
       value="Type your card to continue" />
@@ -59,7 +57,6 @@
 </template>
 
 <script>
-import Title from '@/components/common/Title.vue';
 import SubTitle from '@/components/common/SubTitle.vue';
 import Card from '@/components/common/Card.vue';
 import Label from '@/components/common/Label.vue';
@@ -71,7 +68,6 @@ import Checkbox from '@/components/common/Checkbox.vue';
 export default {
   name: 'Cards',
   components: {
-    Title,
     SubTitle,
     Card,
     Label,

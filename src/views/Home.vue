@@ -2,7 +2,7 @@
   <div class="home">
     <GoBackLink class="go-back" />
     <Layout>
-      <template #layout-left-content>
+      <template #layout-left-container>
         <div class="pay-info">
           <p class="pay-shop-name">Shop Name</p>
           <p class="pay-money-number">₹ 99,999.00</p>
@@ -22,7 +22,7 @@
           </section>
         </div>
       </template>
-      <template #layout-right-content>
+      <template #layout-right-container>
         <router-view />
       </template>
     </Layout>

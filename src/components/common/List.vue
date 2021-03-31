@@ -36,6 +36,9 @@ export default {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #f9f0ea;
+    &:last-child {
+      border-bottom: none;
+    }
     .list-item-icon {
       width: 53px;
       height: auto;

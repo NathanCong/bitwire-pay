@@ -36,6 +36,11 @@ export default {
 
 <style lang="less" scoped>
 .container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   .container-title {
     padding-top: 82px;
     padding-left: 54px;
@@ -46,6 +51,7 @@ export default {
   }
   .container-card {
     padding: 0 50px;
+    margin-top: 30px;
   }
 }
 </style>

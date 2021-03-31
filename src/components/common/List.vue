@@ -27,24 +27,25 @@ export default {
   flex-direction: column;
   .list-item {
     flex: 1;
-    max-height: 140px;
+    // max-height: 140px;
     box-sizing: border-box;
     background-image: url('~@/assets/arrow.png');
     background-repeat: no-repeat;
     background-size: 18px 32px;
-    background-position: right 20px center;
+    background-position: right 18px center;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #f9f0ea;
     .list-item-icon {
       width: 53px;
       height: auto;
-      margin-right: 50px;
+      padding-left: 6px;
+      padding-right: 36px;
       border-radius: 4px;
     }
     .list-item-text {
-      font-size: 38px;
       color: #cb7940;
+      font-size: 38px;
     }
   }
 }

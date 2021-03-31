@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="fonts background">
-    <div class="container">
+    <div class="app-container">
       <router-view />
     </div>
   </div>
@@ -27,7 +27,7 @@
   background-size: cover;
 }
 
-.container {
+.app-container {
   width: 100%;
   height: 100%;
   box-sizing: border-box;

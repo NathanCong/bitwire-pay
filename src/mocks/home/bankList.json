@@ -1,0 +1,57 @@
+{
+    "errCode": 0,
+    "errMsg": "OK",
+    "data": {
+        "bankList": [
+            {
+                "key": "AXIS",
+                "icon": "/assets/cards_logo.png",
+                "name": "AXIS Bank",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "HDFC",
+                "icon": "/assets/wallet_logo.png",
+                "name": "HDFC Bank",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "ICICI",
+                "icon": "/assets/bank_logo.png",
+                "name": "ICICI Bank",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "State",
+                "icon": "/assets/upi_logo.png",
+                "name": "State Bank of India",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Kotak",
+                "icon": "/assets/upi_logo.png",
+                "name": "Kotak Mahindra Bank",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Airtel",
+                "icon": "/assets/google_pay_logo.png",
+                "name": "Airtel Payments Bank",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Search",
+                "icon": "/assets/upi_logo.png",
+                "name": "Search for your bank",
+                "path": "",
+                "link": "https://www.baidu.com"
+            }
+        ]
+    }
+}

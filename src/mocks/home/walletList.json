@@ -1,0 +1,57 @@
+{
+    "errCode": 0,
+    "errMsg": "OK",
+    "data": {
+        "walletList": [
+            {
+                "key": "UPI",
+                "icon": "/assets/cards_logo.png",
+                "name": "PhonePe/BHIM UPI",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Paytm",
+                "icon": "/assets/wallet_logo.png",
+                "name": "Paytm",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "FreedCharge",
+                "icon": "/assets/bank_logo.png",
+                "name": "FreedCharge",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "OLA",
+                "icon": "/assets/upi_logo.png",
+                "name": "OLA",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Airtel",
+                "icon": "/assets/upi_logo.png",
+                "name": "Airtel Money",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Jio",
+                "icon": "/assets/google_pay_logo.png",
+                "name": "Jio Money",
+                "path": "",
+                "link": "https://www.baidu.com"
+            },
+            {
+                "key": "Search",
+                "icon": "/assets/upi_logo.png",
+                "name": "Search for your wallet",
+                "path": "",
+                "link": "https://www.baidu.com"
+            }
+        ]
+    }
+}

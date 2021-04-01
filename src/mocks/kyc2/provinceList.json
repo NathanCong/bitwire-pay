@@ -1,0 +1,44 @@
+{
+    "errCode": 0,
+    "errMsg": "OK",
+    "data": {
+        "provinceList": [
+            {
+                "provinceId": 0,
+                "text": "北京"
+            },
+            {
+                "provinceId": 1,
+                "text": "天津"
+            },
+            {
+                "provinceId": 2,
+                "text": "河北"
+            },
+            {
+                "provinceId": 3,
+                "text": "武汉"
+            },
+            {
+                "provinceId": 4,
+                "text": "山西"
+            },
+            {
+                "provinceId": 5,
+                "text": "广州"
+            },
+            {
+                "provinceId": 6,
+                "text": "桂林"
+            },
+            {
+                "provinceId": 7,
+                "text": "南京"
+            },
+            {
+                "provinceId": 8,
+                "text": "重庆"
+            }
+        ]
+    }
+}

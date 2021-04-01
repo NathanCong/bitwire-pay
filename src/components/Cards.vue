@@ -124,7 +124,7 @@ export default {
           this.$toast({ content: errMsg, duration: 1000 });
           return;
         }
-        this.$toast({ content: '提交成功', duration: 1000 });
+        this.$toast({ content: 'Success', duration: 1000 });
       }).catch((err) => {
         this.$toast({ content: err.message, duration: 1000 });
       });

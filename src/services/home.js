@@ -26,6 +26,7 @@ export function getBankList() {
 
 /**
  * 提交银行卡信息
+ * @param   {Object}  请求参数对象
  * @returns {Promise} 服务器响应结果
  */
 export function submitCard(params = {}) {

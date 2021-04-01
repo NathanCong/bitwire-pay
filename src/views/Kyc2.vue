@@ -79,7 +79,7 @@
         <div class="kyc2-form-picker-wrapper">
           <van-datetime-picker
             type="date"
-            v-model="birth"
+            v-model="tempBirth"
             :min-date="minDate"
             :max-date="maxDate"
           />
@@ -101,7 +101,9 @@
 </template>
 
 <script>
+// 加载库函数
 import DayJS from 'dayjs';
+// 加载组件
 import {
   Layout,
   Container,
@@ -110,6 +112,8 @@ import {
   Button,
   Modal,
 } from '@/components/common';
+// 加载接口
+import { getProvinceList, submit } from '@/services/kyc2';
 
 export default {
   name: 'Kyc2',
@@ -126,29 +130,14 @@ export default {
       name: '', // 姓名
       panNumber: '', // 号码
       birth: '', // 生日
+      tempBirth: '',
       dateModalVisible: false, // 生日选择框开关
       minDate: new Date(1900, 0, 1), // 时间选择器最小时间
       maxDate: new Date(2088, 12, 31), // 时间选择器最大时间
       province: '', // 省份
+      tempProvince: '',
       provinceModalVisible: false, // 省份选择框开关
-      provinceList: [
-        {
-          provinceId: 0,
-          text: '北京',
-        },
-        {
-          provinceId: 1,
-          text: '天津',
-        },
-        {
-          provinceId: 2,
-          text: '河北',
-        },
-        {
-          provinceId: 3,
-          text: '上海',
-        },
-      ],
+      provinceList: [],
     };
   },
   computed: {
@@ -161,7 +150,36 @@ export default {
       return (cList.find((i) => `${i.provinceId}` === `${provinceId}`) || {}).text || '';
     },
   },
+  created() {
+    this.getProvinceList();
+  },
   methods: {
+    // 请求省份列表
+    getProvinceList() {
+      getProvinceList().then((res) => {
+        const { data: { errCode, errMsg, data } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.provinceList = data.provinceList;
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
+    // 提交数据
+    submit(params) {
+      submit(params).then((res) => {
+        const { data: { errCode, errMsg } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.$toast({ content: 'Success', duration: 1000 });
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
     // 返回按钮事件
     handleGoBack() {
       console.log('Kyc2 Go Back');
@@ -195,7 +213,12 @@ export default {
         this.$toast({ content: 'Province can\'t be empty', duration: 1000 });
         return;
       }
-      console.log('提交数据');
+      this.submit({
+        name,
+        panNumber,
+        birth: this.birthDate,
+        province,
+      });
     },
     // 打开生日选择
     handleSelectBirthOpen() {
@@ -207,12 +230,11 @@ export default {
     },
     // 选择生日确认事件
     handleSelectBirthOk() {
+      this.birth = this.tempBirth;
       this.handleSelectBirthClose();
     },
     // 选择生日取消事件
     handleSelectBirthCancel() {
-      const { birth } = this;
-      this.birth = birth;
       this.handleSelectBirthClose();
     },
     // 打开省份选择
@@ -225,18 +247,17 @@ export default {
     },
     // 选择省份确认事件
     handleSelectProvinceOk() {
+      this.province = this.tempProvince;
       this.handleSelectProvinceClose();
     },
     // 选择省份取消事件
     handleSelectProvinceCancel() {
-      const { province } = this;
-      this.province = province;
       this.handleSelectProvinceClose();
     },
     // 选择省份事件
     handleSelectProvinceChange(picker, value = {}) {
       const { provinceId } = value || {};
-      this.province = provinceId;
+      this.tempProvince = provinceId;
     },
   },
 };

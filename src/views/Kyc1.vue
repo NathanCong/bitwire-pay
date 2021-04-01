@@ -25,31 +25,43 @@
                 class="kyc1-form-input"
                 type="text"
                 placeholder="Please input your email"
+                v-model="email"
               />
               <div class="kyc1-form-submit-wrapper">
-                <Button class="kyc1-form-submit-button">SUBMIT</Button>
+                <Button
+                  class="kyc1-form-submit-button"
+                  :disabled="emailCheck"
+                  @click="handleSubmitEmailClick()">SUBMIT</Button>
               </div>
             </section>
             <section class="kyc1-form-item">
               <Label :logo="MobileLogo" value="Verify Your Mobile" />
               <Input
                 class="kyc1-form-input"
-                type="password"
+                type="text"
                 placeholder="Please use the mobile number linked with PayTM account"
+                v-model="mobile"
               />
               <div class="kyc1-form-submit-wrapper">
-                <Button class="kyc1-form-submit-button">SUBMIT</Button>
+                <Button
+                  class="kyc1-form-submit-button"
+                  :disabled="mobileCheck"
+                  @click="handleSubmitMobileClick()">SUBMIT</Button>
                 <div class="kyc1-form-code-wrapper">
                   <Input class="kyc1-form-code-input" type="number" />
                   <Button
                     class="kyc1-form-otp-button"
-                    @click="handleClickOtp()"
+                    @click="handleOptClick()"
                     v-if="!timer">OPT</Button>
                   <span class="kyc1-form-rest-time" v-if="timer">{{ time }}s</span>
                 </div>
               </div>
             </section>
-            <Button class="kyc1-form-next-button">NEXT</Button>
+            <Button
+              class="kyc1-form-next-button"
+              :disabled="!(emailCheck && mobileCheck)"
+              @click="handleNextClick()"
+            >NEXT</Button>
           </div>
         </Container>
       </template>
@@ -69,6 +81,8 @@ import {
 // 加载图片
 import EmailLogo from '@/assets/email_logo.png';
 import MobileLogo from '@/assets/mobile_logo.png';
+// 加载接口
+import { submitEmail, getVerificationCode, submitMobile } from '@/services/kyc1';
 
 export default {
   name: 'Kyc1',
@@ -83,8 +97,13 @@ export default {
     return {
       EmailLogo,
       MobileLogo,
+      email: '', // 邮箱地址
+      emailCheck: false, // 邮箱校验
       timer: null,
       time: 60,
+      mobile: '', // 手机号
+      code: '', // 验证码
+      mobileCheck: false, // 手机号校验
     };
   },
   methods: {
@@ -92,7 +111,45 @@ export default {
     handleGoBack() {
       console.log('Kyc1 Go Back');
     },
-    handleClickOtp() {
+    // 提交邮箱
+    handleSubmitEmailClick() {
+      if (!this.email) {
+        this.$toast({ content: 'Email can\'t be empty', duration: 1000 });
+        return;
+      }
+      submitEmail({ email: this.email }).then((res) => {
+        const { data: { errCode, errMsg } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.emailCheck = true;
+        this.$toast({ content: 'Email verified', duration: 1000 });
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
+    // 获取验证码
+    handleOptClick() {
+      if (!this.mobile) {
+        this.$toast({ content: 'Mobile can\'t be empty', duration: 1000 });
+        return;
+      }
+      this.createTimer();
+      getVerificationCode().then((res) => {
+        const { data: { errCode, errMsg, data } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.code = data.code;
+        this.$toast({ content: `Code is ${this.code}`, duration: 1000 });
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
+    // 创建倒计时Timer
+    createTimer() {
       if (!this.timer) {
         const originTime = this.time;
         this.timer = setInterval(() => {
@@ -105,6 +162,32 @@ export default {
           this.time -= 1;
         }, 1000);
       }
+    },
+    // 提交手机号
+    handleSubmitMobileClick() {
+      if (!this.mobile) {
+        this.$toast({ content: 'Mobile can\'t be empty', duration: 1000 });
+        return;
+      }
+      if (!this.code) {
+        this.$toast({ content: 'OPT code can\'t be empty', duration: 1000 });
+        return;
+      }
+      submitMobile({ mobile: this.mobile }).then((res) => {
+        const { data: { errCode, errMsg } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.mobileCheck = true;
+        this.$toast({ content: 'Mobile verified', duration: 1000 });
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
+    // 下一步按钮
+    handleNextClick() {
+      this.$toast({ content: 'Next', duration: 1000 });
     },
   },
 };
@@ -191,7 +274,6 @@ export default {
     }
   }
   .kyc1-form-next-button {
-    background-color: #d2d2d2;
     color: #f0f0f0;
     font-size: 50px;
     margin-top: 66px;

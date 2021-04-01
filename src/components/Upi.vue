@@ -136,6 +136,7 @@ export default {
       padding-top: 30px;
     }
     .upi-form-input {
+      flex: 1;
       height: 70px;
       line-height: 70px;
       border-top-right-radius: 0;
@@ -144,7 +145,6 @@ export default {
     }
     .upi-form-input-text {
       font-size: 28px;
-      // color: #fff;
       color: #573625;
       background-color: #ded7d4;
       line-height: 70px;

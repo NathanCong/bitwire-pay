@@ -40,13 +40,17 @@ export default {
 <style lang="less" scoped>
 .input {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
   .input-inner {
     width: 100%;
     height: 100%;
     border: none;
     outline: none;
     background-color: #ded7d4;
-    border-radius: 8px;
     color: #573625;
     font-size: 36px;
     box-sizing: border-box;

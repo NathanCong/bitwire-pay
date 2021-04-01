@@ -1,6 +1,9 @@
 <template>
   <div class="kyc1">
-    <Layout :showGoBack="true">
+    <Layout
+      :showGoBack="true"
+      :goBackCallback="handleGoBack"
+    >
       <template #layout-left-container>
         <div class="kyc-info">
           <p class="kyc-question">What is KYC?</p>
@@ -85,6 +88,10 @@ export default {
     };
   },
   methods: {
+    // 返回按钮事件
+    handleGoBack() {
+      console.log('Kyc1 Go Back');
+    },
     handleClickOtp() {
       if (!this.timer) {
         const originTime = this.time;

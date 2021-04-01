@@ -8,6 +8,7 @@ import Layout from './Layout.vue';
 import List from './List.vue';
 import Row from './Row.vue';
 import Toast from './Toast.vue';
+import Modal from './Modal.vue';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   List,
   Row,
   Toast,
+  Modal,
 };

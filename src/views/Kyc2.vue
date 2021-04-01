@@ -1,6 +1,9 @@
 <template>
   <div class="kyc2">
-    <Layout :showGoBack="true">
+    <Layout
+      :showGoBack="true"
+      :goBackCallback="handleGoBack"
+    >
       <template #layout-left-container>
         <div class="kyc2-pan-card">
           <header class="kyc2-pan-card-header">Verify Pan Card</header>
@@ -9,8 +12,12 @@
             <p class="kyc2-pan-card-text">Pan card image</p>
           </main>
           <footer class="kyc2-pan-card-buttons">
-            <i class="kyc2-pan-card-button photo"></i>
-            <i class="kyc2-pan-card-button camera"></i>
+            <i
+              class="kyc2-pan-card-button photo"
+              @click="handlePhotoClick()"></i>
+            <i
+              class="kyc2-pan-card-button camera"
+              @click="handleCameraClick()"></i>
           </footer>
         </div>
       </template>
@@ -23,6 +30,7 @@
                 class="kyc2-form-input"
                 type="text"
                 placeholder="Please input your name"
+                v-model="name"
               />
             </section>
             <section class="kyc2-form-item">
@@ -31,14 +39,15 @@
                 class="kyc2-form-input"
                 type="password"
                 placeholder="Input Pan cam number"
+                v-model="panNumber"
               />
             </section>
             <section class="kyc2-form-item">
-              <Label value="Dale of birth" />
+              <Label value="Date of birth" />
               <div class="kyc2-form-select">
                 <div class="kyc2-form-select-default" v-if="!birth">Please select birth</div>
                 <div class="kyc2-form-select-value" v-if="birth">{{ birth }}</div>
-                <div class="kyc2-form-select-button">select</div>
+                <div class="kyc2-form-select-button" @click="handleSelectDateOpen()">select</div>
               </div>
             </section>
             <section class="kyc2-form-item">
@@ -46,14 +55,30 @@
               <div class="kyc2-form-select">
                 <div class="kyc2-form-select-default" v-if="!province">Please select province</div>
                 <div class="kyc2-form-select-value" v-if="province"></div>
-                <div class="kyc2-form-select-button">select</div>
+                <div class="kyc2-form-select-button" @click="handleSelectCityOpen()">select</div>
               </div>
             </section>
-            <Button class="kyc2-form-button">SUBMIT</Button>
+            <Button
+              class="kyc2-form-button"
+              @click="handleSubmitClick()">SUBMIT</Button>
           </div>
         </Container>
       </template>
     </Layout>
+    <Modal
+      title="Select a date"
+      :visible="dateModalVisible"
+      @ok="handleSelectDateOk()"
+      @cancel="handleSelectDateCancel()">
+      This is a content
+    </Modal>
+    <Modal
+      title="Select a city"
+      :visible="cityModalVisible"
+      @ok="handleSelectCityOk()"
+      @cancel="handleSelectCityCancel()">
+      This is a content
+    </Modal>
   </div>
 </template>
 
@@ -64,6 +89,7 @@ import {
   Label,
   Input,
   Button,
+  Modal,
 } from '@/components/common';
 
 export default {
@@ -74,12 +100,86 @@ export default {
     Label,
     Input,
     Button,
+    Modal,
   },
   data() {
     return {
+      dateModalVisible: false, // 生日选择框开关
+      cityModalVisible: false, // 城市选择框开关
+      name: '', // 姓名
+      panNumber: '', // 号码
       birth: '', // 生日
       province: '', // 省份
     };
+  },
+  methods: {
+    // 返回按钮事件
+    handleGoBack() {
+      console.log('Kyc2 Go Back');
+    },
+    // 图片按钮事件
+    handlePhotoClick() {
+      console.log('handlePhotoClick');
+    },
+    // 相机按钮事件
+    handleCameraClick() {
+      console.log('handleCameraClick');
+    },
+    // 提交按钮事件
+    handleSubmitClick() {
+      const {
+        name, panNumber, birth, province,
+      } = this;
+      if (!name) {
+        this.$toast({ content: 'Name can\'t be empty', duration: 1000 });
+        return;
+      }
+      if (!panNumber) {
+        this.$toast({ content: 'Pan cam number can\'t be empty', duration: 1000 });
+        return;
+      }
+      if (!birth) {
+        this.$toast({ content: 'Birth can\'t be empty', duration: 1000 });
+        return;
+      }
+      if (!province) {
+        this.$toast({ content: 'Province can\'t be empty', duration: 1000 });
+        return;
+      }
+      console.log('提交数据');
+    },
+    // 打开日期选择
+    handleSelectDateOpen() {
+      this.dateModalVisible = true;
+    },
+    // 关闭日期选择
+    handleSelectDateClose() {
+      this.dateModalVisible = false;
+    },
+    // 选择日期确认事件
+    handleSelectDateOk() {
+      this.handleSelectDateClose();
+    },
+    // 选择日期取消事件
+    handleSelectDateCancel() {
+      this.handleSelectDateClose();
+    },
+    // 打开城市选择
+    handleSelectCityOpen() {
+      this.cityModalVisible = true;
+    },
+    // 关闭城市选择
+    handleSelectCityClose() {
+      this.cityModalVisible = false;
+    },
+    // 选择城市确认事件
+    handleSelectCityOk() {
+      this.handleSelectCityClose();
+    },
+    // 选择城市取消事件
+    handleSelectCityCancel() {
+      this.handleSelectCityClose();
+    },
   },
 };
 </script>

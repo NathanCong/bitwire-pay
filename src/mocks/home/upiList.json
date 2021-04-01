@@ -1,0 +1,64 @@
+{
+    "errCode": 0,
+    "errMsg": "OK",
+    "data": {
+        "upiList": [
+            {
+                "key": "Google Pay",
+                "icon": "/assets/cards_logo.png",
+                "name": "Google Pay",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            },
+            {
+                "key": "Phone Pe",
+                "icon": "/assets/wallet_logo.png",
+                "name": "Phone Pe",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            },
+            {
+                "key": "BHIM",
+                "icon": "/assets/bank_logo.png",
+                "name": "BHIM",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            },
+            {
+                "key": "Paytm",
+                "icon": "/assets/upi_logo.png",
+                "name": "Paytm",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            },
+            {
+                "key": "Kotak Mahindra Bank",
+                "icon": "/assets/upi_logo.png",
+                "name": "Kotak Mahindra Bank",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            },
+            {
+                "key": "Airtel Payments Bank",
+                "icon": "/assets/google_pay_logo.png",
+                "name": "Airtel Payments Bank",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            },
+            {
+                "key": "Search for your bank",
+                "icon": "/assets/upi_logo.png",
+                "name": "Search for your bank",
+                "path": "",
+                "link": "",
+                "proceedLink": "http://www.baidu.com"
+            }
+        ]
+    }
+}

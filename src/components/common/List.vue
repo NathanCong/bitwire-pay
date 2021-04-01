@@ -4,7 +4,7 @@
       class="list-item"
       v-for="item in listConfig"
       :key="item.key"
-      @click="handleListItemClick(item)">
+      @click="item.callback(item) || handleListItemClick(item)">
       <img class="list-item-icon" :src="item.icon" />
       <span class="list-item-text">{{ item.name }}</span>
     </section>
@@ -15,7 +15,7 @@
 export default {
   name: 'List',
   props: {
-    listConfig: {
+    listConfig: { // 列表配置
       type: Array,
       required: true,
     },

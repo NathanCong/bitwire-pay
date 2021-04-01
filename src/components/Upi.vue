@@ -4,31 +4,36 @@
       title="Payment Options"
       subtitle="Choose your UPI"
     >
-      <div class="upi-content">
-        <div class="upi-list">
-          <List :listConfig="listConfig" />
-        </div>
-        <div class="upi-form">
-          <section class="upi-form-item">
-            <Row>
-              <Input class="upi-form-input" type="text" />
-              <span class="upi-form-input-text">@paytm</span>
-            </Row>
-          </section>
-          <section class="upi-form-item">
-            <Row>
-              <Checkbox class="upi-form-checkbox" />
-              <span class="upi-form-checkbox-text">
-                Save this option securly for faster payment
-              </span>
-            </Row>
-          </section>
-          <section class="upi-form-item">
-            <Button class="upi-form-button">Proceed</Button>
-          </section>
-        </div>
-      </div>
+      <List :listConfig="listConfig" />
     </Container>
+    <div class="upi-form" v-if="isShow">
+      <section class="upi-form-item">
+        <Row>
+          <Input
+            class="upi-form-input"
+            type="text"
+            v-model="account"
+          />
+          <span class="upi-form-input-text">@paytm</span>
+        </Row>
+      </section>
+      <section class="upi-form-item">
+        <Checkbox
+          class="upi-form-checkbox"
+          v-model="isSave"
+        >
+          <span class="upi-form-checkbox-text">
+            Save this option securly for faster payment
+          </span>
+        </Checkbox>
+      </section>
+      <section class="upi-form-item">
+        <Button
+          class="upi-form-button"
+          @click="handleProceedClick()"
+        >Proceed</Button>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -42,11 +47,8 @@ import {
   Row,
   Checkbox,
 } from '@/components/common';
-// 加载图片
-import CardsLogo from '@/assets/cards_logo.png';
-import WalletLogo from '@/assets/wallet_logo.png';
-import BankLogo from '@/assets/bank_logo.png';
-import UpiLogo from '@/assets/upi_logo.png';
+// 加载接口
+import { getUpiList } from '@/services/home';
 
 export default {
   name: 'Upi',
@@ -60,29 +62,54 @@ export default {
   },
   data() {
     return {
-      listConfig: [
-        {
-          key: 'Google Pay',
-          icon: CardsLogo,
-          name: 'Google Pay',
-        },
-        {
-          key: 'Phone Pe',
-          icon: WalletLogo,
-          name: 'Phone Pe',
-        },
-        {
-          key: 'BHIM',
-          icon: BankLogo,
-          name: 'BHIM',
-        },
-        {
-          key: 'Paytm',
-          icon: UpiLogo,
-          name: 'Paytm',
-        },
-      ],
+      listConfig: [],
+      account: '',
+      isSave: false,
+      isShow: false,
+      currentItem: {},
     };
+  },
+  created() {
+    this.getUpiList();
+  },
+  methods: {
+    // 获取UPI列表
+    getUpiList() {
+      getUpiList().then((res) => {
+        const { data: { errCode, errMsg, data } } = res;
+        if (errCode !== 0) {
+          this.$toast({ content: errMsg, duration: 1000 });
+          return;
+        }
+        this.listConfig = data.upiList.map((i) => ({
+          ...i,
+          callback: this.handleListItemClick,
+        }));
+      }).catch((err) => {
+        this.$toast({ content: err.message, duration: 1000 });
+      });
+    },
+    // 菜单点击事件
+    handleListItemClick(item = {}) {
+      this.currentItem = item;
+      this.handleFormOpen();
+    },
+    // 表单开启
+    handleFormOpen() {
+      this.isShow = true;
+    },
+    // 表单关闭
+    handleFormClose() {
+      this.isShow = false;
+    },
+    // 跳转点击
+    handleProceedClick() {
+      if (!this.account) {
+        this.$toast({ content: 'Account can\'t be empty', duration: 1000 });
+        return;
+      }
+      window.location.href = this.currentItem.proceedLink;
+    },
   },
 };
 </script>
@@ -91,19 +118,20 @@ export default {
 .upi {
   width: 100%;
   height: 100%;
-  .upi-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding-bottom: 66px;
-  }
-  .upi-list {
-    flex: 1;
-    border-bottom: 1px solid #f9f0ea;
-  }
+  position: relative;
   .upi-form {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    padding: 0 36px;
+    padding-top: 30px;
+    padding-bottom: 64px;
     .upi-form-item {
       padding-top: 30px;
     }
@@ -116,7 +144,8 @@ export default {
     }
     .upi-form-input-text {
       font-size: 28px;
-      color: #fff;
+      // color: #fff;
+      color: #573625;
       background-color: #ded7d4;
       line-height: 70px;
       height: 70px;

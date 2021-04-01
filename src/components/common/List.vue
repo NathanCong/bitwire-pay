@@ -4,7 +4,7 @@
       class="list-item"
       v-for="item in listConfig"
       :key="item.key"
-      @click="item.callback(item) || handleListItemClick(item)">
+      @click="handleListItemClick(item)">
       <img class="list-item-icon" :src="item.icon" />
       <span class="list-item-text">{{ item.name }}</span>
     </section>
@@ -22,12 +22,16 @@ export default {
   },
   methods: {
     handleListItemClick(item = {}) {
-      const { path, link } = item || {};
-      if (link) { // 跳转外部链接
+      const { path, link, callback } = item || {};
+      if (typeof callback === 'function') { // 回调函数优先处理
+        callback(item);
+        return;
+      }
+      if (typeof link === 'string' && link) { // 跳转外部链接
         window.location.href = link;
         return;
       }
-      if (path) { // 跳转内部路由
+      if (typeof path === 'string' && path) { // 跳转内部路由
         this.$router.push(path);
       }
     },

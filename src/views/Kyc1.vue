@@ -26,6 +26,7 @@
                 type="text"
                 placeholder="Please input your email"
                 v-model="email"
+                :checked="emailCheck"
               />
               <div class="kyc1-form-submit-wrapper">
                 <Button
@@ -41,6 +42,7 @@
                 type="text"
                 placeholder="Please use the mobile number linked with PayTM account"
                 v-model="mobile"
+                :checked="mobileCheck"
               />
               <div class="kyc1-form-submit-wrapper">
                 <Button

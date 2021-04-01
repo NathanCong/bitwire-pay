@@ -70,8 +70,6 @@ export default {
     overflow: hidden;
     background-color: #fff;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
     .modal-header {
       width: 100%;
       height: 108px;
@@ -84,16 +82,14 @@ export default {
     }
     .modal-main {
       width: 100%;
-      height: 100%;
+      height: 532px;
       box-sizing: border-box;
       padding: 0 80px;
       display: flex;
       flex-direction: column;
       .modal-content {
         flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        position: relative;
       }
       .modal-buttons {
         display: flex;

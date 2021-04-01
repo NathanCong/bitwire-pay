@@ -46,16 +46,20 @@
               <Label value="Date of birth" />
               <div class="kyc2-form-select">
                 <div class="kyc2-form-select-default" v-if="!birth">Please select birth</div>
-                <div class="kyc2-form-select-value" v-if="birth">{{ birth }}</div>
-                <div class="kyc2-form-select-button" @click="handleSelectDateOpen()">select</div>
+                <div class="kyc2-form-select-value" v-if="birth">{{ birthDate }}</div>
+                <div
+                  class="kyc2-form-select-button"
+                  @click="handleSelectBirthOpen()">select</div>
               </div>
             </section>
             <section class="kyc2-form-item">
               <Label value="Province" />
               <div class="kyc2-form-select">
                 <div class="kyc2-form-select-default" v-if="!province">Please select province</div>
-                <div class="kyc2-form-select-value" v-if="province"></div>
-                <div class="kyc2-form-select-button" @click="handleSelectCityOpen()">select</div>
+                <div class="kyc2-form-select-value" v-if="province">{{ provinceName }}</div>
+                <div
+                  class="kyc2-form-select-button"
+                  @click="handleSelectProvinceOpen()">select</div>
               </div>
             </section>
             <Button
@@ -68,21 +72,36 @@
     <Modal
       title="Select a date"
       :visible="dateModalVisible"
-      @ok="handleSelectDateOk()"
-      @cancel="handleSelectDateCancel()">
-      This is a content
+      :visible-item-count="3"
+      value-key="provinceId"
+      @ok="handleSelectBirthOk()"
+      @cancel="handleSelectBirthCancel()">
+        <div class="kyc2-form-picker-wrapper">
+          <van-datetime-picker
+            type="date"
+            v-model="birth"
+            :min-date="minDate"
+            :max-date="maxDate"
+          />
+        </div>
     </Modal>
     <Modal
       title="Select a city"
-      :visible="cityModalVisible"
-      @ok="handleSelectCityOk()"
-      @cancel="handleSelectCityCancel()">
-      This is a content
+      :visible="provinceModalVisible"
+      @ok="handleSelectProvinceOk()"
+      @cancel="handleSelectProvinceCancel()">
+      <div class="kyc2-form-picker-wrapper">
+        <van-picker
+          :columns="provinceList"
+          @change="handleSelectProvinceChange"
+        />
+      </div>
     </Modal>
   </div>
 </template>
 
 <script>
+import DayJS from 'dayjs';
 import {
   Layout,
   Container,
@@ -104,13 +123,43 @@ export default {
   },
   data() {
     return {
-      dateModalVisible: false, // 生日选择框开关
-      cityModalVisible: false, // 城市选择框开关
       name: '', // 姓名
       panNumber: '', // 号码
       birth: '', // 生日
+      dateModalVisible: false, // 生日选择框开关
+      minDate: new Date(1900, 0, 1), // 时间选择器最小时间
+      maxDate: new Date(2088, 12, 31), // 时间选择器最大时间
       province: '', // 省份
+      provinceModalVisible: false, // 省份选择框开关
+      provinceList: [
+        {
+          provinceId: 0,
+          text: '北京',
+        },
+        {
+          provinceId: 1,
+          text: '天津',
+        },
+        {
+          provinceId: 2,
+          text: '河北',
+        },
+        {
+          provinceId: 3,
+          text: '上海',
+        },
+      ],
     };
+  },
+  computed: {
+    birthDate() {
+      return DayJS(this.birth).format('YYYY-MM-DD');
+    },
+    provinceName() {
+      const cList = this.provinceList;
+      const provinceId = this.province;
+      return (cList.find((i) => `${i.provinceId}` === `${provinceId}`) || {}).text || '';
+    },
   },
   methods: {
     // 返回按钮事件
@@ -148,37 +197,46 @@ export default {
       }
       console.log('提交数据');
     },
-    // 打开日期选择
-    handleSelectDateOpen() {
+    // 打开生日选择
+    handleSelectBirthOpen() {
       this.dateModalVisible = true;
     },
-    // 关闭日期选择
-    handleSelectDateClose() {
+    // 关闭生日选择
+    handleSelectBirthClose() {
       this.dateModalVisible = false;
     },
-    // 选择日期确认事件
-    handleSelectDateOk() {
-      this.handleSelectDateClose();
+    // 选择生日确认事件
+    handleSelectBirthOk() {
+      this.handleSelectBirthClose();
     },
-    // 选择日期取消事件
-    handleSelectDateCancel() {
-      this.handleSelectDateClose();
+    // 选择生日取消事件
+    handleSelectBirthCancel() {
+      const { birth } = this;
+      this.birth = birth;
+      this.handleSelectBirthClose();
     },
-    // 打开城市选择
-    handleSelectCityOpen() {
-      this.cityModalVisible = true;
+    // 打开省份选择
+    handleSelectProvinceOpen() {
+      this.provinceModalVisible = true;
     },
-    // 关闭城市选择
-    handleSelectCityClose() {
-      this.cityModalVisible = false;
+    // 关闭省份选择
+    handleSelectProvinceClose() {
+      this.provinceModalVisible = false;
     },
-    // 选择城市确认事件
-    handleSelectCityOk() {
-      this.handleSelectCityClose();
+    // 选择省份确认事件
+    handleSelectProvinceOk() {
+      this.handleSelectProvinceClose();
     },
-    // 选择城市取消事件
-    handleSelectCityCancel() {
-      this.handleSelectCityClose();
+    // 选择省份取消事件
+    handleSelectProvinceCancel() {
+      const { province } = this;
+      this.province = province;
+      this.handleSelectProvinceClose();
+    },
+    // 选择省份事件
+    handleSelectProvinceChange(picker, value = {}) {
+      const { provinceId } = value || {};
+      this.province = provinceId;
     },
   },
 };
@@ -296,6 +354,36 @@ export default {
   }
   .kyc2-form-button {
     margin-top: 30px;
+  }
+}
+
+.kyc2-form-picker-wrapper {
+  position: absolute;
+  top: 30px;
+  right: 23px;
+  bottom: 30px;
+  left: 23px;
+  overflow: hidden;
+  /deep/.van-picker {
+    width: 100%;
+    position: absolute;
+    top: -230px;
+    left: 0;
+    .van-ellipsis {
+      color: #5d4437;
+      font-size: 42px;
+    }
+  }
+  /deep/.van-datetime-picker {
+    top: -270px;
+    .van-ellipsis {
+      color: #5d4437;
+      font-size: 52px;
+    }
+  }
+  /deep/[class*=van-hairline]::after {
+    border-color: #5d4437;
+    border-width: 3px 0;
   }
 }
 </style>

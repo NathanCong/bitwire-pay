@@ -7,7 +7,7 @@ module.exports = {
       viewportUnit: 'vw', // (String) 希望使用的视口单位
       minPixelValue: 1, // (Number) 设置最小的转换数值，如果为1的话，只有大于1的值会被转换
       mediaQuery: false, // (Boolean) 媒体查询里的单位是否需要转换单位
-      exclude: [/^node_modules$/], // (Array or Regexp) 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
+      // exclude: [/^node_modules$/], // (Array or Regexp) 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
       landscapeUnit: 'vw', // (String) 横屏时使用的单位
       landscapeWidth: 2340, // (Number) 横屏时使用的视口宽度
     },

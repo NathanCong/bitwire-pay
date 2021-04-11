@@ -54,7 +54,7 @@
                   <Button
                     class="kyc1-form-otp-button"
                     @click="handleOptClick()"
-                    v-if="!timer">OPT</Button>
+                    v-if="!timer">OTP</Button>
                   <span class="kyc1-form-rest-time" v-if="timer">{{ time }}s</span>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default {
         return;
       }
       if (!this.code) {
-        this.$toast({ content: 'OPT code can\'t be empty', duration: 1000 });
+        this.$toast({ content: 'OTP code can\'t be empty', duration: 1000 });
         return;
       }
       submitMobile({ mobile: this.mobile }).then((res) => {

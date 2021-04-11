@@ -258,21 +258,24 @@ export default {
         margin-right: 10px;
       }
       .kyc1-form-otp-button {
+        width: 120px;
         height: 70px;
+        box-sizing: border-box;
         line-height: 70px;
-        padding: 0 20px;
         font-size: 36px;
         font-weight: 300;
+        // padding: 0 20px;
       }
       .kyc1-form-rest-time {
-        box-sizing: border-box;
+        width: 120px;
         height: 70px;
+        box-sizing: border-box;
         line-height: 70px;
         font-size: 32px;
         color: #cb7940;
         border: 1px solid #cb7940;
         border-radius: 14px;
-        padding: 0 30px;
+        // padding: 0 20px;
       }
     }
   }

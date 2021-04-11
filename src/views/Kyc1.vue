@@ -112,6 +112,7 @@ export default {
     // 返回按钮事件
     handleGoBack() {
       console.log('Kyc1 Go Back');
+      this.$router.go(-1);
     },
     // 提交邮箱
     handleSubmitEmailClick() {

@@ -46,6 +46,7 @@ export default {
     // 返回按钮事件
     handleHomeGoBack() {
       console.log('handleHomeGoBack');
+      this.$router.go(-1);
     },
   },
 };

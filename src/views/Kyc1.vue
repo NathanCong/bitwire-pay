@@ -21,13 +21,15 @@
           <div class="kyc1-form">
             <section class="kyc1-form-item">
               <Label :logo="EmailLogo" value="Verify Your Email" />
-              <Input
-                class="kyc1-form-input"
-                type="text"
-                placeholder="Please input your email"
-                v-model="email"
-                :checked="emailCheck"
-              />
+              <div class="kyc1-form-input-wrapper">
+                <Input
+                  class="kyc1-form-input"
+                  type="text"
+                  placeholder="Please input your email"
+                  v-model="email"
+                />
+                <span class="kyc1-form-check" v-if="emailCheck"></span>
+              </div>
               <div class="kyc1-form-submit-wrapper">
                 <Button
                   class="kyc1-form-submit-button"
@@ -37,13 +39,15 @@
             </section>
             <section class="kyc1-form-item">
               <Label :logo="MobileLogo" value="Verify Your Mobile" />
-              <Input
-                class="kyc1-form-input"
-                type="text"
-                placeholder="Please use the mobile number linked with PayTM account"
-                v-model="mobile"
-                :checked="mobileCheck"
-              />
+              <div class="kyc1-form-input-wrapper">
+                <Input
+                  class="kyc1-form-input"
+                  type="text"
+                  placeholder="Please use the mobile number linked with PayTM account"
+                  v-model="mobile"
+                />
+                <span class="kyc1-form-check" v-if="mobileCheck"></span>
+              </div>
               <div class="kyc1-form-submit-wrapper">
                 <Button
                   class="kyc1-form-submit-button"
@@ -229,12 +233,29 @@ export default {
   .kyc1-form-item {
     padding-bottom: 30px;
   }
+  .kyc1-form-input-wrapper {
+    position: relative;
+    padding-right: 62px;
+  }
   .kyc1-form-input {
     height: 70px;
     line-height: 70px;
     margin-top: 20px;
   }
+  .kyc1-form-check {
+    width: 48px;
+    height: 48px;
+    background-image: url('~@/assets/input_check_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
   .kyc1-form-submit-wrapper {
+    box-sizing: border-box;
+    padding-right: 62px;
     margin-top: 10px;
     display: flex;
     flex-direction: row-reverse;

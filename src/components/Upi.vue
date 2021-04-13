@@ -4,36 +4,40 @@
       title="Payment Options"
       subtitle="Choose your UPI"
     >
-      <List :listConfig="listConfig" />
+      <DrawerList
+        :listConfig="listConfig"
+        @listItemClick="handleListItemClick"
+      >
+        <div class="upi-form">
+          <section class="upi-form-item">
+            <Row>
+              <Input
+                class="upi-form-input"
+                type="text"
+                v-model="account"
+              />
+              <span class="upi-form-input-text">@paytm</span>
+            </Row>
+          </section>
+          <section class="upi-form-item">
+            <Checkbox
+              class="upi-form-checkbox"
+              v-model="isSave"
+            >
+              <span class="upi-form-checkbox-text">
+                Save this option securly for faster payment
+              </span>
+            </Checkbox>
+          </section>
+          <section class="upi-form-item">
+            <Button
+              class="upi-form-button"
+              @click="handleProceedClick()"
+            >Proceed</Button>
+          </section>
+        </div>
+      </DrawerList>
     </Container>
-    <div class="upi-form" v-if="isShow">
-      <section class="upi-form-item">
-        <Row>
-          <Input
-            class="upi-form-input"
-            type="text"
-            v-model="account"
-          />
-          <span class="upi-form-input-text">@paytm</span>
-        </Row>
-      </section>
-      <section class="upi-form-item">
-        <Checkbox
-          class="upi-form-checkbox"
-          v-model="isSave"
-        >
-          <span class="upi-form-checkbox-text">
-            Save this option securly for faster payment
-          </span>
-        </Checkbox>
-      </section>
-      <section class="upi-form-item">
-        <Button
-          class="upi-form-button"
-          @click="handleProceedClick()"
-        >Proceed</Button>
-      </section>
-    </div>
   </div>
 </template>
 
@@ -41,7 +45,7 @@
 // 加载组件
 import {
   Container,
-  List,
+  DrawerList,
   Input,
   Button,
   Row,
@@ -54,7 +58,7 @@ export default {
   name: 'Upi',
   components: {
     Container,
-    List,
+    DrawerList,
     Input,
     Button,
     Row,
@@ -65,7 +69,6 @@ export default {
       listConfig: [],
       account: '',
       isSave: false,
-      isShow: false,
       currentItem: {},
     };
   },
@@ -92,15 +95,6 @@ export default {
     // 菜单点击事件
     handleListItemClick(item = {}) {
       this.currentItem = item;
-      this.handleFormOpen();
-    },
-    // 表单开启
-    handleFormOpen() {
-      this.isShow = true;
-    },
-    // 表单关闭
-    handleFormClose() {
-      this.isShow = false;
     },
     // 跳转点击
     handleProceedClick() {
@@ -120,20 +114,13 @@ export default {
   height: 100%;
   position: relative;
   .upi-form {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
+    // background-color: #fff;
     box-sizing: border-box;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    padding: 0 36px;
-    padding-top: 30px;
-    padding-bottom: 64px;
     .upi-form-item {
       padding-top: 30px;
+      &:first-child {
+        padding-top: 0;
+      }
     }
     .upi-form-input {
       flex: 1;

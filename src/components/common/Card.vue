@@ -66,6 +66,7 @@ export default {
   height: 100%;
   box-sizing: border-box;
   padding: 50px 43px;
+  overflow-y: auto;
   &.br-35 {
     border-radius: 35px;
   }

@@ -6,6 +6,7 @@ import Input from './Input.vue';
 import Label from './Label.vue';
 import Layout from './Layout.vue';
 import List from './List.vue';
+import DrawerList from './DrawerList.vue';
 import Row from './Row.vue';
 import Toast from './Toast.vue';
 import Modal from './Modal.vue';
@@ -19,6 +20,7 @@ export {
   Label,
   Layout,
   List,
+  DrawerList,
   Row,
   Toast,
   Modal,

@@ -113,9 +113,6 @@ export default {
         this.$toast({ content: 'Name on Card can\'t be empty', duration: 1000 });
         return;
       }
-      console.log({
-        cardNumber, expiry, cvv, cardName, isSave,
-      });
       submitCard({
         cardNumber, expiry, cvv, cardName, isSave,
       }).then((res) => {

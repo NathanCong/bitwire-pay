@@ -182,7 +182,6 @@ export default {
     },
     // 返回按钮事件
     handleGoBack() {
-      console.log('Kyc2 Go Back');
       this.$router.go(-1);
     },
     // 图片按钮事件

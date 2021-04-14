@@ -115,7 +115,6 @@ export default {
   methods: {
     // 返回按钮事件
     handleGoBack() {
-      console.log('Kyc1 Go Back');
       this.$router.go(-1);
     },
     // 提交邮箱
@@ -194,7 +193,7 @@ export default {
     },
     // 下一步按钮
     handleNextClick() {
-      this.$toast({ content: 'Next', duration: 1000 });
+      this.$router.push('/kyc2');
     },
   },
 };

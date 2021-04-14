@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       status: {},
+      currentKey: '',
     };
   },
   watch: {
@@ -44,7 +45,11 @@ export default {
   },
   methods: {
     handleDrawerListItemClick(item = {}) {
+      if (this.currentKey && this.currentKey !== item.key) {
+        this.status[this.currentKey] = false;
+      }
       this.status[item.key] = !this.status[item.key]; // 修改状态
+      this.currentKey = item.key;
       this.$emit('listItemClick', item); // 暴露方法
     },
   },

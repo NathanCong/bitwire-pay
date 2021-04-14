@@ -4,6 +4,9 @@
       title="Payment Options"
       subtitle="Choose a payment option"
     >
+      <Button
+        class="kyc-button"
+        @click="handleKycButtonClick()">KYC</Button>
       <List :listConfig="listConfig" />
     </Container>
   </div>
@@ -11,7 +14,7 @@
 
 <script>
 // 加载组件
-import { Container, List } from '@/components/common';
+import { Container, List, Button } from '@/components/common';
 // 加载接口
 import { getPaymentOptions } from '@/services/home';
 
@@ -20,6 +23,7 @@ export default {
   components: {
     Container,
     List,
+    Button,
   },
   data() {
     return {
@@ -43,6 +47,10 @@ export default {
         this.$toast({ content: err.message, duration: 1000 });
       });
     },
+    // KYC 按钮点击事件
+    handleKycButtonClick() {
+      this.$router.push('/kyc1');
+    },
   },
 };
 </script>
@@ -51,5 +59,16 @@ export default {
 .options {
   width: 100%;
   height: 100%;
+  position: relative;
+  .kyc-button {
+    position: absolute;
+    top: 132px;
+    right: 0;
+    width: 120px;
+    height: 70px;
+    line-height: 70px;
+    font-weight: normal;
+    font-size: 32px;
+  }
 }
 </style>

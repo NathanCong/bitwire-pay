@@ -9,6 +9,7 @@
                 "name": "Google Pay",
                 "path": "",
                 "link": "",
+                "suffix": "@google.com",
                 "proceedLink": "http://www.baidu.com"
             },
             {
@@ -17,6 +18,7 @@
                 "name": "Phone Pe",
                 "path": "",
                 "link": "",
+                "suffix": "@pp.com",
                 "proceedLink": "http://www.baidu.com"
             },
             {
@@ -25,6 +27,7 @@
                 "name": "BHIM",
                 "path": "",
                 "link": "",
+                "suffix": "@bhim.com",
                 "proceedLink": "http://www.baidu.com"
             },
             {
@@ -33,6 +36,7 @@
                 "name": "Paytm",
                 "path": "",
                 "link": "",
+                "suffix": "@paytm.com",
                 "proceedLink": "http://www.baidu.com"
             },
             {
@@ -41,6 +45,7 @@
                 "name": "Kotak Mahindra Bank",
                 "path": "",
                 "link": "",
+                "suffix": "@km.com",
                 "proceedLink": "http://www.baidu.com"
             },
             {
@@ -49,6 +54,7 @@
                 "name": "Airtel Payments Bank",
                 "path": "",
                 "link": "",
+                "suffix": "@ap.com",
                 "proceedLink": "http://www.baidu.com"
             },
             {
@@ -57,6 +63,7 @@
                 "name": "Search for your bank",
                 "path": "",
                 "link": "",
+                "suffix": "@bank.com",
                 "proceedLink": "http://www.baidu.com"
             }
         ]

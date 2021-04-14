@@ -16,7 +16,7 @@
                 type="text"
                 v-model="account"
               />
-              <span class="upi-form-input-text">@paytm</span>
+              <span class="upi-form-input-text">{{ currentItem.suffix }}</span>
             </Row>
           </section>
           <section class="upi-form-item">

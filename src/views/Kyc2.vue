@@ -378,6 +378,7 @@ export default {
   }
 }
 
+// vant 选项组件容器
 .kyc2-form-picker-wrapper {
   position: absolute;
   top: 30px;
@@ -385,6 +386,7 @@ export default {
   bottom: 30px;
   left: 23px;
   overflow: hidden;
+  // van-picker
   /deep/.van-picker {
     width: 100%;
     position: absolute;
@@ -395,8 +397,12 @@ export default {
       font-size: 42px;
     }
   }
+  // van-datetime-picker
   /deep/.van-datetime-picker {
-    top: -270px;
+    width: 100%;
+    position: absolute;
+    top: -500px;
+    left: 0;
     .van-ellipsis {
       color: #5d4437;
       font-size: 52px;
@@ -405,6 +411,10 @@ export default {
   /deep/[class*=van-hairline]::after {
     border-color: #5d4437;
     border-width: 3px 0;
+  }
+  /deep/.van-picker__frame {
+    left: 0;
+    right: 0;
   }
 }
 </style>

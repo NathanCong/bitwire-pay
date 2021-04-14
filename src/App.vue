@@ -43,6 +43,13 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 212px;
+  // 横屏处理
+  @media all and (orientation: landscape) {
+    padding: 0 212px;
+  }
+  // 竖屏处理
+  @media all and (orientation: portrait) {
+    padding: 0 80px;
+  }
 }
 </style>

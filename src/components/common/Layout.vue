@@ -48,15 +48,25 @@ export default {
     -8px 0 21px rgba(70, 62, 56, 0.09);
   overflow: hidden;
   display: flex;
+  // 横屏处理
+  @media all and (orientation: landscape) {
+    flex-direction: row;
+  }
+  // 竖屏处理
+  @media all and (orientation: portrait) {
+    flex-direction: column;
+  }
 }
 
 .layout-left,
 .layout-right {
+  flex: 1;
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
   padding: 54px 60px;
+  overflow-y: auto;
 }
 
 .layout-left {

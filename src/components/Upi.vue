@@ -95,6 +95,7 @@ export default {
     // 菜单点击事件
     handleListItemClick(item = {}) {
       this.currentItem = item;
+      this.resetForm();
     },
     // 跳转点击
     handleProceedClick() {
@@ -103,6 +104,11 @@ export default {
         return;
       }
       window.location.href = this.currentItem.proceedLink;
+    },
+    // 表单重置
+    resetForm() {
+      this.account = '';
+      this.isSave = false;
     },
   },
 };

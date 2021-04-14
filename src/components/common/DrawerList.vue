@@ -60,10 +60,7 @@ export default {
 .drawer-list {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
   .drawer-list-item {
-    flex: 1;
     border-bottom: 1px solid #f9f0ea;
     display: flex;
     flex-direction: column;
@@ -72,9 +69,8 @@ export default {
       border-bottom: none;
     }
     .drawer-list-item-title {
-      // max-height: 140px;
       width: 100%;
-      height: 120px;
+      height: 140px;
       box-sizing: border-box;
       position: relative;
       display: flex;

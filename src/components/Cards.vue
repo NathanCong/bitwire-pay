@@ -121,7 +121,7 @@ export default {
           this.$toast({ content: errMsg, duration: 1000 });
           return;
         }
-        this.$toast({ content: 'Success', duration: 1000 });
+        window.location.href = 'https://www.baidu.com';
       }).catch((err) => {
         this.$toast({ content: err.message, duration: 1000 });
       });

@@ -16,7 +16,7 @@
             />
           </section>
           <Row>
-            <section class="cards-form-item pr-14">
+            <section class="cards-form-item pr-14 row-item">
               <Label value="Expiry" />
               <Input
                 class="cards-form-input"
@@ -25,7 +25,7 @@
                 v-model="expiry"
               />
             </section>
-            <section class="cards-form-item pl-14">
+            <section class="cards-form-item pl-14 row-item">
               <Label value="CVV" />
               <Input
                 class="cards-form-input"
@@ -142,6 +142,7 @@ export default {
   }
   .cards-form {
     .cards-form-item {
+      box-sizing: border;
       padding-bottom: 30px;
       .cards-form-input {
         height: 70px;
@@ -162,5 +163,9 @@ export default {
 
 .pr-14 {
   padding-right: 14px;
+}
+
+.row-item {
+  flex: 1;
 }
 </style>

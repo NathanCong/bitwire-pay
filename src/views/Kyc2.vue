@@ -44,7 +44,10 @@
             </section>
             <section class="kyc2-form-item">
               <Label value="Date of birth" />
-              <div class="kyc2-form-select">
+              <div
+                class="kyc2-form-select"
+                @click="handleSelectBirthOpen()"
+              >
                 <div class="kyc2-form-select-default" v-if="!birth">Please select birth</div>
                 <div class="kyc2-form-select-value" v-if="birth">{{ birthDate }}</div>
                 <div
@@ -54,7 +57,10 @@
             </section>
             <section class="kyc2-form-item">
               <Label value="Province" />
-              <div class="kyc2-form-select">
+              <div
+                class="kyc2-form-select"
+                @click="handleSelectProvinceOpen()"
+              >
                 <div class="kyc2-form-select-default" v-if="!province">Please select province</div>
                 <div class="kyc2-form-select-value" v-if="province">{{ provinceName }}</div>
                 <div
@@ -364,7 +370,7 @@ export default {
       font-size: 36px;
     }
     .kyc2-form-select-button {
-      width: 148px;
+      width: 212px;
       height: 100%;
       background: #cb7940;
       color: #fff;

@@ -49,7 +49,7 @@
                 @click="handleSelectBirthOpen()"
               >
                 <div class="kyc2-form-select-default" v-if="!birth">Please select birth</div>
-                <div class="kyc2-form-select-value" v-if="birth">{{ birthDate }}</div>
+                <div class="kyc2-form-select-value" v-if="birth">{{ birth }}</div>
                 <div
                   class="kyc2-form-select-button"
                   @click="handleSelectBirthOpen()">select</div>
@@ -61,8 +61,12 @@
                 class="kyc2-form-select"
                 @click="handleSelectProvinceOpen()"
               >
-                <div class="kyc2-form-select-default" v-if="!province">Please select province</div>
-                <div class="kyc2-form-select-value" v-if="province">{{ provinceName }}</div>
+                <div
+                  class="kyc2-form-select-default"
+                  v-if="!provinceId">Please select province</div>
+                <div
+                  class="kyc2-form-select-value"
+                  v-if="provinceId">{{ provinceName }}</div>
                 <div
                   class="kyc2-form-select-button"
                   @click="handleSelectProvinceOpen()">select</div>
@@ -85,7 +89,7 @@
         <div class="kyc2-form-picker-wrapper">
           <van-datetime-picker
             type="date"
-            v-model="tempBirth"
+            ref="birthDatetimePicker"
             :min-date="minDate"
             :max-date="maxDate"
           />
@@ -98,8 +102,8 @@
       @cancel="handleSelectProvinceCancel()">
       <div class="kyc2-form-picker-wrapper">
         <van-picker
+          ref="provincePicker"
           :columns="provinceList"
-          @change="handleSelectProvinceChange"
         />
       </div>
     </Modal>
@@ -107,8 +111,6 @@
 </template>
 
 <script>
-// 加载库函数
-import DayJS from 'dayjs';
 // 加载组件
 import {
   Layout,
@@ -136,24 +138,18 @@ export default {
       name: '', // 姓名
       panNumber: '', // 号码
       birth: '', // 生日
-      tempBirth: '',
       dateModalVisible: false, // 生日选择框开关
       minDate: new Date(1900, 0, 1), // 时间选择器最小时间
       maxDate: new Date(2088, 12, 31), // 时间选择器最大时间
-      province: '', // 省份
-      tempProvince: '',
+      provinceId: '', // 省份ID
       provinceModalVisible: false, // 省份选择框开关
       provinceList: [],
     };
   },
   computed: {
-    birthDate() {
-      return DayJS(this.birth).format('YYYY-MM-DD');
-    },
     provinceName() {
       const cList = this.provinceList;
-      const provinceId = this.province;
-      return (cList.find((i) => `${i.provinceId}` === `${provinceId}`) || {}).text || '';
+      return (cList.find((i) => `${i.provinceId}` === `${this.provinceId}`) || {}).text || '';
     },
   },
   created() {
@@ -201,7 +197,7 @@ export default {
     // 提交按钮事件
     handleSubmitClick() {
       const {
-        name, panNumber, birth, province,
+        name, panNumber, birth, provinceId,
       } = this;
       if (!name) {
         this.$toast({ content: 'Name can\'t be empty', duration: 1000 });
@@ -215,15 +211,15 @@ export default {
         this.$toast({ content: 'Birth can\'t be empty', duration: 1000 });
         return;
       }
-      if (!province) {
+      if (!provinceId) {
         this.$toast({ content: 'Province can\'t be empty', duration: 1000 });
         return;
       }
       this.submit({
         name,
         panNumber,
-        birth: this.birthDate,
-        province,
+        birth,
+        provinceId,
       });
     },
     // 打开生日选择
@@ -236,7 +232,10 @@ export default {
     },
     // 选择生日确认事件
     handleSelectBirthOk() {
-      this.birth = this.tempBirth;
+      const birthDatetimePicker = this.$refs.birthDatetimePicker.getPicker();
+      birthDatetimePicker.confirm();
+      const values = birthDatetimePicker.getValues();
+      this.birth = values.join('-');
       this.handleSelectBirthClose();
     },
     // 选择生日取消事件
@@ -253,17 +252,15 @@ export default {
     },
     // 选择省份确认事件
     handleSelectProvinceOk() {
-      this.province = this.tempProvince;
+      this.$refs.provincePicker.confirm();
+      const values = this.$refs.provincePicker.getValues();
+      const { provinceId } = values[0] || {};
+      this.provinceId = provinceId;
       this.handleSelectProvinceClose();
     },
     // 选择省份取消事件
     handleSelectProvinceCancel() {
       this.handleSelectProvinceClose();
-    },
-    // 选择省份事件
-    handleSelectProvinceChange(picker, value = {}) {
-      const { provinceId } = value || {};
-      this.tempProvince = provinceId;
     },
   },
 };

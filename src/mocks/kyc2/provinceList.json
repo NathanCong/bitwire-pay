@@ -4,40 +4,44 @@
     "data": {
         "provinceList": [
             {
-                "provinceId": 0,
+                "provinceId": 1001,
                 "text": "北京"
             },
             {
-                "provinceId": 1,
+                "provinceId": 1002,
                 "text": "天津"
             },
             {
-                "provinceId": 2,
+                "provinceId": 1003,
                 "text": "河北"
             },
             {
-                "provinceId": 3,
+                "provinceId": 1004,
                 "text": "武汉"
             },
             {
-                "provinceId": 4,
+                "provinceId": 1005,
                 "text": "山西"
             },
             {
-                "provinceId": 5,
+                "provinceId": 1006,
                 "text": "广州"
             },
             {
-                "provinceId": 6,
+                "provinceId": 1007,
                 "text": "桂林"
             },
             {
-                "provinceId": 7,
+                "provinceId": 1008,
                 "text": "南京"
             },
             {
-                "provinceId": 8,
+                "provinceId": 1009,
                 "text": "重庆"
+            },
+            {
+                "provinceId": 1010,
+                "text": "山东"
             }
         ]
     }
